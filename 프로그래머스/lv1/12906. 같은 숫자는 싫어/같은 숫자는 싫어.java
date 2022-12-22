@@ -1,18 +1,25 @@
 import java.util.*;
 
 public class Solution {
-    public List<Integer> solution(int []arr) {
-        List<Integer> answer = new ArrayList<>();
+    public int[] solution(int []arr) {
         
-        int tmp = -1;
+        ArrayList<Integer> arrList = new ArrayList<>();
+        int preNum = 10;
         
-        for(int n : arr){
-            if(tmp !=n){
-                answer.add(n);
-                tmp = n;
+        for(int num : arr){
+            if(preNum != num){
+                arrList.add(num);
             }
+            preNum = num;
         }
-        return answer;
         
+        //ArrayList -> Array
+        int [] answer = new int[arrList.size()];
+        
+        for(int i=0; i< answer.length; i++){
+            answer[i] = arrList.get(i).intValue();
+        }
+
+        return answer;
     }
 }
