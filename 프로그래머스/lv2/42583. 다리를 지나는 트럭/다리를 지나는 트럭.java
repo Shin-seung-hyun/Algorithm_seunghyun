@@ -20,18 +20,20 @@ class Solution {
                     break;
 
                 }
-                // 큐의 크기와 다리 길이가 같을 때
-                else if (queue.size() == bridge_length){
-                        sum -= queue.poll();
-                }
+
                 //큐가 차있을 때
                 else{
+                    // 큐의 크기와 다리 길이가 같을 때
+                    if (queue.size() == bridge_length){
+                            sum -= queue.poll();
+                    }                    
                     //최대 무게를 초과했을 때
-                    if(sum + truck_weight > weight){
+                    else if(sum + truck_weight > weight){
                         queue.add(0);
                         time++;
 
                     }
+
                     //최대 무게 이내일 때
                     else{
                         queue.add(truck_weight);
