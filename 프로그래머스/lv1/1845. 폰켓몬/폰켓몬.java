@@ -1,16 +1,16 @@
-import java.util.HashMap;
+import java.util.HashSet;
 
 class Solution {
     public int solution(int[] nums) {
         
         int pick = nums.length/2;
-        HashMap<Integer, Integer> map = new HashMap<>();
+        HashSet<Integer> set = new HashSet<>();
         
         for(int n : nums){
-            map.put(n, map.getOrDefault(n,0)+1);
+            set.add(n);
         }
         
-        if(pick <= map.size()) return pick;
-        else return map.size();
+        if(pick <= set.size()) return pick;
+        else return set.size();
     }
 }
