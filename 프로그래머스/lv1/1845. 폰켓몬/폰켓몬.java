@@ -1,23 +1,16 @@
-import java.util.HashSet;
+import java.util.HashMap;
 
 class Solution {
     public int solution(int[] nums) {
-
-        int max = nums.length / 2;
-
-        HashSet<Integer> set = new HashSet<>();
-
-        for (int num : nums) {
-          set.add(num);
-        }
-
-        if (set.size() > max) {
-          return max;
-        } 
-        else {
-          return set.size();
+        
+        int pick = nums.length/2;
+        HashMap<Integer, Integer> map = new HashMap<>();
+        
+        for(int n : nums){
+            map.put(n, map.getOrDefault(n,0)+1);
         }
         
+        if(pick <= map.size()) return pick;
+        else return map.size();
     }
-    
 }
