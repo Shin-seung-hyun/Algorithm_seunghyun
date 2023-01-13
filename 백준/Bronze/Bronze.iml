@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/1157. 단어 공부" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/11718. 그대로 출력하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/11719. 그대로 출력하기 2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/11720. 숫자의 합" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/11721. 열 개씩 끊어 출력하기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2557. Hello World" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2558. A＋B － 2" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2738. 행렬 덧셈" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/2741. N 찍기" isTestSource="false" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

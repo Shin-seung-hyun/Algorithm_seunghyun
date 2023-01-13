@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-//중복 0, 순서 x
+//N개 중 M개를 중복 0, 순서 x 고르기
 public class Main{
     
     public static int N, M;

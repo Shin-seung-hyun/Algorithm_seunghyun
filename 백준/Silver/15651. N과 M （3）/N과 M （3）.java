@@ -1,5 +1,6 @@
 import java.util.Scanner;
- 
+
+//N개 중 M개를 중복 o, 순서 o 나열하기
 public class Main {
 	
 	public static int[] arr;

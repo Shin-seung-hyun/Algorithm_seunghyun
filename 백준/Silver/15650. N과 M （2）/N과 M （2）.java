@@ -1,5 +1,6 @@
 import java.util.Scanner;
- 
+
+//N개 중 M개를 중복 x, 순서 x 고르기
 public class Main {
  
 	public static int[] arr;
