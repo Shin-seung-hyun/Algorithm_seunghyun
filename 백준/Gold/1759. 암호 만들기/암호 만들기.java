@@ -1,7 +1,7 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-//C개 중에 L개를 중복 x, 순서 o 개 나열하기
+//C개 중에 L개를 중복 x, 순서 x 개 고르기
 //단, 최소 한개의 모음과 두 개의 자음으로 구성될 것
 
 public class Main{
@@ -9,13 +9,13 @@ public class Main{
     public static int C, L;
     public static char[] arr;
     public static char[] pwd;
-    public static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        L = sc.nextInt(); //L개 중에
-        C = sc.nextInt(); //C개 고르기
+        //C개 중에 L개 고르기
+        L = sc.nextInt();
+        C = sc.nextInt();
         arr = new char[C];
         pwd = new char[L];
 
