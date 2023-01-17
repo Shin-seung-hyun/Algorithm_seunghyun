@@ -1,6 +1,5 @@
 import java.util.Scanner;
 import java.util.Arrays;
-import java.util.HashSet;
 
 //중복 x, 순서 o 개 나열하기
 public class Main{
@@ -10,7 +9,6 @@ public class Main{
     public static int[] nums;
     public static boolean[] visit;
     public static StringBuilder sb = new StringBuilder();
-    public static HashSet<String> hashSet = new HashSet<>();
 
 
     public static void main(String[] args) {
@@ -38,28 +36,30 @@ public class Main{
 
         //재귀 종료조건
         if(depth == M){
-            StringBuilder sb2 = new StringBuilder();
-
             for(int val : arr){
-                sb2.append(val).append(" ");
+                sb.append(val).append(" ");
             }
-            if(!hashSet.contains(sb2.toString())){
-                sb.append(sb2.toString()).append("\n");
-                hashSet.add(sb2.toString());
-            }
-
+            sb.append("\n");
             return;
         }
-
+        
         //재귀 반복
-        for(int i = 0; i<N; i++){
-            if(visit[i] == false){
-                visit[i] = true;
-                arr[depth] = nums[i];
-                dfs( depth+1);
-                visit[i] = false;
-            }
+        else {
+            int before = 0;
 
+            for (int i = 0; i < N; i++) {
+                
+                if(visit[i]) continue;
+                
+                if (before != nums[i]) {
+                    visit[i] = true;
+                    arr[depth] = nums[i];
+                    before = nums[i];
+                    dfs(depth + 1);
+                    visit[i] = false;
+                }
+
+            }
         }
     }
 
