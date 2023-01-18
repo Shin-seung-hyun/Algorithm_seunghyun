@@ -48,10 +48,8 @@ public class Main{
             int before = 0;
 
             for (int i = 0; i < N; i++) {
-                
-                if(visit[i]) continue;
-                
-                if (before != nums[i]) {
+
+                if (visit[i]== false && before != nums[i]) {
                     visit[i] = true;
                     arr[depth] = nums[i];
                     before = nums[i];
