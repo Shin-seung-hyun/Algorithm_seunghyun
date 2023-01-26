@@ -13,16 +13,16 @@ Comparator -> compare()
 */
 class Main{
     public static int N;
-    public static Student[] stu;
+    public static Stu[] stu;
     public static StringBuilder sb = new StringBuilder();
 
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
-        N = sc.nextInt;
-        stu = new Student[N];
+        N = sc.nextInt();
+        stu = new Stu[N];
 
         for(int i =0; i<N; i++){
-            stu[i] = new Student();
+            stu[i] = new Stu();
             stu[i].name = sc.next();
             stu[i].korean = sc.nextInt();
             stu[i].english = sc.nextInt();
@@ -39,10 +39,10 @@ class Main{
     }
 
     //익명 객체(익명 클래스)
-    public static Comparator<Student> com = new Comparator<>(){
+    public static Comparator<Stu> comp = new Comparator<>(){
 
         @Override
-        public int compare(Student o1, Student o2){
+        public int compare(Stu o1, Stu o2){
             if(o1.korean == o2.korean ){
                 if(o1.english == o2.english){
                     if(o1.math == o2.math){
@@ -58,7 +58,7 @@ class Main{
 
 }
 
-class Student{
+class Stu {
     String name;
     int korean,english,math;
 }
