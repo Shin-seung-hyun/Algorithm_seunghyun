@@ -1,57 +1,101 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main {
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int n = Integer.parseInt(br.readLine());
-        int[][] arr = new int[n][2]; //좌표와 색깔을 가지는 이차원 배열 생성
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Comparator;
+/*
+//이차원 배열로 풀기
+하나의 배열에 순서대로 정렬
+    0 1
+    3 1
+    5 1
+    1 2
+    4 2
+ */
 
-        for (int i = 0; i < n; i++) {
+public class Main {
+
+    public static void main(String args[])throws IOException {
+        //0. Scanner 입력
+//        Scanner sc = new Scanner(System.in);
+//        int N = sc.nextInt();
+//        int [][]arr = new int[N][2];
+//        int sum = 0;
+//
+//        //이차원 배열 입력
+//        for(int i =0; i< N;i++){
+//            for(int j = 0; j< 2; j++){
+//                arr[i][j] = sc.nextInt();
+//            }
+//        }
+
+        //0. BufferedReader 와 StringTokenizer로 입력 받기
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
+        int[][] arr = new int[N][2];
+
+        for (int i = 0; i < N; i++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
 
             arr[i] = new int[] {
                     Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())
             };
-            //arr[]에 (0 1) (1 2) (3 1) (4 2) (5 1) 값을 차례대로 넣어줍니다.
         }
         br.close();
 
-        int answer = 0;
-        // 색깔 기준으로 정렬하고 색깔이 같으면 좌표기준으로 정렬을 해준다.
-        Arrays.sort(arr, (o1, o2) -> { //그냥 함수임. 이렇게 쓰면됨.
-            if (o1[1] == o2[1]) //2번째 배열의 수가 같으면 첫번째 배열의 숫자를 기준으로 정렬을 해준다.
-                return o1[0] - o2[0];
-            else // 그 밖의는 2번째 배열의 수가 다를 경우는 두번째 배열의 숫자를 기준으로 정렬을 해준다.
-                return o1[1] - o2[1];
+        //1. 색깔 별로 정렬
+        Arrays.sort(arr,new Comparator<int[]>(){
+            @Override
+            public int compare(int[] a, int[]b){
+                if(a[1] == b[1]) return a[0] - b[0];
+                else return a[1] - b[1];
+            }
         });
 
-        for (int i = 0; i < n; i++) {
-            //반복문을 한번 돌면서 양끝 좌표인 케이스는 인접한 좌표와의 거리만 계산하고
-            //중간의 좌표는 왼쪽과 오른쪽 좌표의 색깔을 비교해서 양쪽 다 같으면 좌표 거리 차이가 최소인 좌표,
-            //한쪽만 같으면 해당 좌표 거리만 더해서 정답을 구한다.
-            if (i == 0) {
-                answer += (arr[1][0] - arr[0][0]);//시작 좌표는 바로 아래 점과의 거리 값 구해서 더하기
-            }
-            else if (i == n-1) {
-                answer += (arr[n-1][0] - arr[n-2][0]);//마지막 좌표는 비로 위 점과의 거리 값 구해서 더하기
-            }
-            else
-            {// 위쪽 아래쪽 같은 색이면 좌표 거리차이 최소값
-                if (arr[i][1] == arr[i-1][1] && arr[i][1] == arr[i+1][1])
-                    answer += Math.min(arr[i][0] - arr[i-1][0], arr[i+1][0] - arr[i][0]);
-                    //양쪽 점중에서 가장 거리가 가까운 값을 반환합니다.
+        //이차원 배열 출력
+        //System.out.println(Arrays.deepToString(arr));
 
-                else if (arr[i][1] == arr[i-1][1]) // 위쪽만 같은 색
-                    answer += (arr[i][0] - arr[i-1][0]);
+        //2. 거리 계산하기
+        for(int i = 0 ; i< N; i++){
 
-                else // 아래쪽만 같은 색
-                    answer += (arr[i+1][0] - arr[i][0]);
+            // 처음 좌표라면
+            if(i==0){
+                sum +=  (arr[1][0] - arr[0][0]);
+            }
+
+            // 마지막 좌표라면
+            else if(i == N-1){
+                sum += (arr[N-1][0] - arr[N-2][0]);
+            }
+            else{
+
+                //양쪽 모두 같을 때
+                if((arr[i][1] == arr[i-1][1]) && (arr[i][1] == arr[i+1][1])){
+                    //오른쪽 화살표
+                    int right = arr[i][0] -arr[i-1][0];
+                    //왼쪽 화살표
+                    int left = arr[i+1][0] - arr[i][0];
+
+                    sum += Math.min(right, left);
+                }
+                //오른쪽만 같을 때
+                else if(arr[i][1] == arr[i-1][1]){
+                    //오른쪽 화살표
+                    sum += (arr[i][0] -arr[i-1][0]);
+                }
+                //왼쪽만 같을 때
+                else{
+                    //왼쪽 화살표
+                    sum += (arr[i+1][0] - arr[i][0]);
+                }
+
             }
         }
-        System.out.println(answer);
+
+        System.out.println(sum);
+
     }
 }
