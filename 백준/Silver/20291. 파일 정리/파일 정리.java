@@ -1,91 +1,39 @@
-import java.io.*;
-import java.util.*;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Collections;
+import java.util.ArrayList;
+import java.util.StringTokenizer;
+import java.io.InputStreamReader;
+import java.io.IOException;
+import java.io.BufferedReader;
 
-public class Main {
-    static FastReader scan = new FastReader();
-    static StringBuilder sb = new StringBuilder();
+public class Main{
+    public static void main(String[] args) throws IOException{
 
-    static int N;
-    static String[] a;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        int N = Integer.parseInt(br.readLine());
 
-    static void input() {
-        N = scan.nextInt();
-        a = new String[N+1];
-        for (int i = 1; i <= N; i++) {
-            a[i] = scan.nextLine().split("\\.")[1];
-        }
-    }
+        HashMap<String,Integer> map = new HashMap<>();
 
-    static void pro() {
-        Arrays.sort(a, 1, N + 1);
+        for(int i = 0; i< N; i++){
+            StringTokenizer st = new StringTokenizer(br.readLine() , ".");
+            String title = st.nextToken();
+            String file_name = st.nextToken();
 
-        for (int i = 1; i <= N;) {
-            // a[i] 와 같은 모든 것을 하나씩 찾는다.
-            int cnt = 1, j = i + 1;
-            for (;j <= N; j++){
-                if (a[j].compareTo(a[i]) == 0) cnt++;
-                else break;
-            }
-
-            sb.append(a[i]).append(' ').append(cnt).append('\n');
-
-            // a[j] 가 a[i] 랑 다른 상황! 즉, 다음 i 는 j 부터 시작하면 된다.
-            i = j;
+            map.put(file_name, map.getOrDefault(file_name, 0)+1);
         }
 
-        // 정답 출력하기
-        System.out.println(sb.toString());
-    }
+        //확장자 이름순으로 정렬하기
+        ArrayList<String> keySet = new ArrayList<>(map.keySet());
 
-    public static void main(String[] args) {
-        input();
-        pro();
-    }
+        Collections.sort(keySet);
 
-
-    static class FastReader {
-        BufferedReader br;
-        StringTokenizer st;
-
-        public FastReader() {
-            br = new BufferedReader(new InputStreamReader(System.in));
+        //출력하기
+        for(String name :keySet){
+            System.out.print(name + " " + map.get(name));
+            System.out.println();
         }
 
-        public FastReader(String s) throws FileNotFoundException {
-            br = new BufferedReader(new FileReader(new File(s)));
-        }
 
-        String next() {
-            while (st == null || !st.hasMoreElements()) {
-                try {
-                    st = new StringTokenizer(br.readLine());
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            return st.nextToken();
-        }
-
-        int nextInt() {
-            return Integer.parseInt(next());
-        }
-
-        long nextLong() {
-            return Long.parseLong(next());
-        }
-
-        double nextDouble() {
-            return Double.parseDouble(next());
-        }
-
-        String nextLine() {
-            String str = "";
-            try {
-                str = br.readLine();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return str;
-        }
     }
 }
