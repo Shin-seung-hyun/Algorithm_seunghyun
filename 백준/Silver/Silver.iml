@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/10825. 국영수" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/11651. 좌표 정렬하기 2" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/11652. 카드" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/1181. 단어 정렬" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/1182. 부분수열의 합" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/1427. 소트인사이드" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/14888. 연산자 끼워넣기" isTestSource="false" />
@@ -16,6 +17,9 @@
       <sourceFolder url="file://$MODULE_DIR$/15651. N과 M （3）" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/15652. N과 M （4）" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/15663. N과 M （9）" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/15970. 화살표 그리기" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/20291. 파일 정리" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/7795. 먹을 것인가 먹힐 것인가" isTestSource="false" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
