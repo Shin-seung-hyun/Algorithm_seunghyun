@@ -21,9 +21,13 @@ public class Main{
         for(int i = 1; i<= N; i++) A[i] = sc.nextInt();
         for(int i = 1; i<= M; i++) B[i] = sc.nextInt();
 
+
+        //public static void sort(int[] a, int fromIndex, int toIndex)
+        //fromIndex 포함, toIndex 미포함
+        Arrays.sort(B, 1, M+1);
+
         //A : 8 1 7 3 1
         //B : 1 3 6
-        Arrays.sort(B, 1, M+1);
 
         int cnt = 0;
 
