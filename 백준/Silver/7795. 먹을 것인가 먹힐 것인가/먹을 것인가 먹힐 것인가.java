@@ -44,7 +44,7 @@ public class Main{
     public static int search(int left, int rigth, int x){
 
         //B 배열에서 X이하의 수가 없다면 left를 반환함
-        int result = left;
+        int result = 0;
         while(left <= rigth){
 
             int mid = (left + rigth) / 2;
