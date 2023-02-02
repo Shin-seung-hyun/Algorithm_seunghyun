@@ -47,13 +47,15 @@ public class Main{
     //이분 탐색
     public static void search(){
 
-        long left =0;
-        long right = 2_000_000_000;
-        long result = 0;
+        //정답인 H의 범위는 0<= H <=10억
+        int left =0;
+        int right = 1_000_000_000;
+        int result = 0;
 
         while(left <= right){
             int mid = (int)(left + right)/2;
 
+            //sum이 true인 H 중에 가장 작은 H 찾기
             if(determination(mid)){
                 result = mid;
                 left = mid + 1;
