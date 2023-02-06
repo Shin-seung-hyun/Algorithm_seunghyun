@@ -9,12 +9,12 @@ public class Main{
     public static StringBuilder sb = new StringBuilder();
 
     public static void main(String args[]) throws IOException{
-
+        //Scanner 사용 시, 시간초과 발생
         BufferedReader br= new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
         N = Integer.parseInt(br.readLine());
 
-        StringTokenizer st = new StringTokenizer(br.readLine());
         for(int i = 0; i<N ;i++){
             int num = Integer.parseInt(st.nextToken());
             hashMap.put(num,hashMap.getOrDefault(num,0)+1);
@@ -33,8 +33,11 @@ public class Main{
 
         M = Integer.parseInt(br.readLine());
         st = new StringTokenizer(br.readLine());
+
         for(int i =0; i<M; i++){
             int num = Integer.parseInt(st.nextToken());
+
+            //이분 탐색
             if(search(1, arr.length-1, num)) sb.append(hashMap.get(num)).append(" ");
             else sb.append(0).append(" ");
         }
