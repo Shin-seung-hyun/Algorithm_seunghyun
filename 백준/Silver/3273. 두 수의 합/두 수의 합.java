@@ -12,7 +12,8 @@ public class Main{
         N = sc.nextInt();
         arr = new int[N+1];
         for(int i = 1; i<=N; i++){
-           arr[i] =sc.nextInt();
+            //arr[]는 서로 다른 양의 정수
+            arr[i] =sc.nextInt();
         }
 
         //이분탐색을 위한 정렬
@@ -23,13 +24,14 @@ public class Main{
 
         //이분탐색
         int cnt = 0;
-        for(int i = 1; i<=N; i++){
+        for(int i = 1; i<=N-1; i++){
 
-            //arr[1]~ arr[N] 중에서 X - arr[i]가 있는지 탐색
-            cnt += search(1, N , X - arr[i]);
+            //arr[i+1]~ arr[N] 중에서 X - arr[i]가 있는지 탐색
+            // 중복 확인하지 않기 위함
+            cnt += search(i+1, N , X - arr[i]);
         }
 
-        System.out.println(cnt/2);
+        System.out.println(cnt);
     }
 
     public static int search(int left, int right, int x){
