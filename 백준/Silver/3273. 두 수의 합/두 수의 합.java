@@ -34,7 +34,6 @@ public class Main{
 
     public static int search(int left, int right, int x){
 
-        int result = 0;
         if(x <=0) return 0;
 
         while(left <= right){
