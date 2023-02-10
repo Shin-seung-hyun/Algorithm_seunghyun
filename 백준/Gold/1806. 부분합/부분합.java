@@ -30,17 +30,20 @@ public class Main{
             //하나씩 줄이기
             sum = sum -arr[left-1];
 
-            //S가 될 때까지 더하기
+            //sum이 S값 이상이 될 때까지 더하기
             while(right + 1 <= N && sum < S){
                 sum = sum + arr[++right];
             }
 
             if(sum >= S){
-                //몇개를 더해서 S가 됐는지 확인
+                //몇개를 더해서 S이상이 됐는지 확인
+                    // 전체를 다 돌았는데도 S이상이 안되는 경우에는 left = 1, right =N 임
+                    // Math.min(answer, N);
                 answer = Math.min(answer, right -left +1);
             }
         }
 
+        //전체를 다 돌았는데도 S이상이 안되는 경우
         if(answer == N+1) answer =0;
         System.out.println(answer);
     }
