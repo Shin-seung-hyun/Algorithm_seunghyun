@@ -6,7 +6,8 @@ public class Main{
 
     static int N;
     static int M;
-    static int []arr;
+    static int []A;
+    static int []B;
     static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException{
@@ -16,25 +17,39 @@ public class Main{
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
 
-        arr = new int[N+M];
+        A = new int [N+1];
+        B = new int [M+1];
 
         st = new StringTokenizer(br.readLine());
-        for(int i =0 ;i< N ;i ++){
-            arr[i] = Integer.parseInt(st.nextToken());
+        for(int i =1 ;i<= N ;i ++){
+            A[i] = Integer.parseInt(st.nextToken());
         }
 
         st = new StringTokenizer(br.readLine());
-        for(int i = 0; i<M; i++){
-            arr[N+i] = Integer.parseInt(st.nextToken());
+        for(int i = 1; i<= M; i++){
+            B[i] = Integer.parseInt(st.nextToken());
         }
 
-        Arrays.sort(arr);
-        
-        for(int i =0 ;i <N+M; i++){
-            sb.append(arr[i]).append(" ");
-        }
-        System.out.println(sb.toString());
+        twoPointer();
+
         br.close();
+    }
+
+    static void twoPointer(){
+        int left = 1;
+        int right =1;
+
+        while(left <= N && right <=M){
+            if(A[left] <= B[right]) sb.append(A[left++]).append(" ");
+            else{
+                sb.append(B[right++]).append(" ");
+            }
+        }
+
+        while(left <= N) sb.append(A[left++]).append(" ");
+        while(right <= M) sb.append(B[right++]).append(" ");
+
+        System.out.println(sb.toString());
     }
 
 }
