@@ -46,6 +46,7 @@ public class Main{
             }
         }
 
+        //둘 중 남아 있는 것 넣기
         while(left <= N) sb.append(A[left++]).append(" ");
         while(right <= M) sb.append(B[right++]).append(" ");
 
