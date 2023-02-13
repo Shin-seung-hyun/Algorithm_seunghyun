@@ -1,15 +1,16 @@
 import java.util.*;
 import java.io.*;
+import java.util.*;
 
 //그래프 DFS, BFS
     //양방향 그래프, 가중치 X
-    //인접 행렬
+    //인접 리스트
 public class Main{
 
     static int N;   //Vertex 정점의 개수
     static int M;   //Edge 간선의 수
     static int V;    //탐색할 정점의 시작 번호
-    static ArrayList<Integer> adj[]; //인접 행렬
+    static ArrayList<Integer> adj[]; //인접 리스트
     static boolean [] visit;
     static StringBuilder sb = new StringBuilder();
 
