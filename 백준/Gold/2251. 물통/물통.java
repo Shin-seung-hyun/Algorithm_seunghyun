@@ -30,12 +30,12 @@ public class Main{
         System.out.println(sb.toString());
     }
 
-    static void BFS(int x1, int x2, int x3){
+    static void BFS(int a, int b, int c){
         Queue<Bottle> queue = new LinkedList<>();
 
-        //x1,x2,x3 방문
-        queue.add(new Bottle(new int[]{x1,x2,x3}));
-        visit[x1][x2][x3] = true;
+        //a b c 방문
+        queue.add(new Bottle(new int[]{a,b,c}));
+        visit[a][b][c] = true;
 
         //BFS 탐색
         while(!queue.isEmpty()){
