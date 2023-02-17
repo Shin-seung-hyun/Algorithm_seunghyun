@@ -1,13 +1,15 @@
 import java.util.*;
 
+//그래프와 DFS, BFS
+//BFS
 class Main{
     static int M;   // 가로 길이
     static int N;   // 세로 길이
     static int K;   // 배추의 개수
     static int [][]arr; // 배추의 좌표
     static boolean [][]visit;
-    static int [][]dir = {{1,0}, {-1,0}, {0,1}, {0,-1}};
-    static int answer = 0;
+    static int [][]dir = {{1,0}, {-1,0}, {0,1}, {0,-1}}; //상하좌우 탐색을 위한 임의의 배열
+    static int answer = 0;  //배추 지렁이 수 cnt
 
     public static void main(String args[]){
         Scanner sc = new Scanner(System.in);
@@ -33,11 +35,14 @@ class Main{
 
             for(int a =0 ; a<M; a++){
                 for(int b =0; b<N; b++){
-                   if(arr[a][b] == 1) BFS(a,b);
+                    if( !visit[a][b] && arr[a][b] == 1) {
+                        BFS(a,b);
+                        answer +=1;
+                    }
                 }
             }
 
-            System.out.println(K-answer);
+            System.out.println(answer);
         }
     }
 
@@ -69,8 +74,6 @@ class Main{
                 queue.add(nx);
                 queue.add(ny);
                 visit[nx][ny] = true;
-                answer +=1;
-
             }
 
         }
