@@ -1,5 +1,7 @@
 import java.util.*;
 
+//그래프와 DFS, BFS
+    //BFS
 class Main{
     static int R;   //행
     static int C;   //열
@@ -48,9 +50,6 @@ class Main{
     static void BFS(int x, int y){
         Queue<Integer>queue = new LinkedList<>();
 
-        if(arr[x].charAt(y) == 'o') sheep++;
-        if(arr[x].charAt(y) == 'v') wolf++;
-
         //(x,y) 방문
         queue.add(x);
         queue.add(y);
@@ -60,6 +59,9 @@ class Main{
             x = queue.poll();
             y = queue.poll();
 
+            if(arr[x].charAt(y) == 'o') sheep++;
+            if(arr[x].charAt(y) == 'v') wolf++;
+
             for(int i =0; i<4; i++){
                 int nx = x + dir[i][0];
                 int ny = y + dir[i][1];
@@ -67,8 +69,6 @@ class Main{
                 if(nx <0 || ny <0 || nx >= R || ny >=C) continue;
                 if(visit[nx][ny])continue;
                 if(arr[nx].charAt(ny) =='#') continue;
-                if(arr[nx].charAt(ny) == 'o') sheep++;
-                if(arr[nx].charAt(ny) == 'v') wolf++;
 
                 visit[nx][ny] = true;
                 queue.add(nx);
