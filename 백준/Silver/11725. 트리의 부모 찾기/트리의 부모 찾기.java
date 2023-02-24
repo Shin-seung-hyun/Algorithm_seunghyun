@@ -46,9 +46,6 @@ class Main{
     static void BFS(int start){
         Queue<Integer> queue = new LinkedList<>();
 
-        //visit 초기화
-        for(int i =1; i<=N; i++) visit[i] = false;
-
         queue.add(start);
         visit[start] = true;
 
