@@ -7,7 +7,6 @@ class Main{
     static int N; //유저의 수
     static int M; //친구 관계의 수
     static int dist[];  //다른 지점에 도달하는 수
-    static boolean visit[];   //방문 여부 확인
     static int answer[];
     static ArrayList<Integer> []adj;
 
@@ -29,11 +28,9 @@ class Main{
             adj[B].add(A);
         }
 
-        visit = new boolean[N+1];
         dist = new int[N+1];
 
         int min = Integer.MAX_VALUE;
-
         int arr[] = new int[N+1];
         for(int i =1; i<=N; i++){
             int sum = 0;
@@ -61,21 +58,18 @@ class Main{
         //dist 초기화
         for(int i =1; i<=N; i++){
             dist[i] = -1;
-            visit[i] = false;
         }
 
         queue.add(start);
         dist[start] = 0;
-        visit[start] = true;
 
         while(!queue.isEmpty()){
             start = queue.poll();
 
             for (int x : adj[start]){
 
-                if(visit[x]) continue;
+                if(dist[x] != -1) continue;
 
-                visit[x] = true;
                 dist[x] = dist[start] +1;
                 queue.add(x);
             }
