@@ -93,8 +93,8 @@ class Main{
             //가치가 있는지 확인
             // 꺼낸 정보가 최신 정보 dist랑 다르면, 의미없이 낡은 정보이므로 패스
             // 꺼낸 정보다 더 큼으로 갱신할 필요가 없음
-            //if(dist[info.idx] < info.dist) continue; 와 같음
-            if(dist[info.idx] != info.dist) continue;
+            //if(dist[info.idx] != info.dist) continue; 와 같음
+            if(dist[info.idx] < info.dist) continue;
 
             //연결된 모든 간선을 통해 다른 정점들에 대한 정보를 갱신
             for(Edge e : edges[info.idx]){
