@@ -30,8 +30,22 @@ class Main{
         for(int i =2; i<=N-1; i++){
             for(int j = 0; j<=20; j++){
 
-                if (j - arr[i] >= 0)    Dy[i][j] += Dy[i-1][j-arr[i]];
-                if (j + arr[i] <= 20)   Dy[i][j] += Dy[i-1][j+arr[i]];
+//                if (j - arr[i] >= 0)    Dy[i][j] += Dy[i-1][j-arr[i]];
+//                if (j + arr[i] <= 20)   Dy[i][j] += Dy[i-1][j+arr[i]];
+                
+                if(Dy[i-1][j]!=0){
+                    int plus = j+arr[i];
+                    int minus = j-arr[i];
+                    
+                    if(plus>=0 && plus<=20){
+                        Dy[i][plus] += Dy[i-1][j];
+                    }
+                    
+                    if(minus>=0 && minus<=20){
+                        Dy[i][minus] += Dy[i-1][j];
+                    }
+                }
+                
             }
 
         }
