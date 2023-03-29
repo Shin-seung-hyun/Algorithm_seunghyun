@@ -66,6 +66,9 @@ public class Main{
 
     public static int search(int [] arr, int left, int right, int x){
 
+
+        //계속 왼쪽으로 이동했을 때 대비 N+1큰 값을 저장(arr[mid] < x)
+            // 100 [0 99]
         int result = right +1;
 
         while(left <= right){
