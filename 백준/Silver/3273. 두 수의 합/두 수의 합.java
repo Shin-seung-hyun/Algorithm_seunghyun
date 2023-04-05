@@ -1,6 +1,8 @@
 import java.util.*;
 import java.io.*;
 
+ //이분탐색
+    //배열 내에 X - arr[i]가 있는지 탐색
 public class Main{
 
     public static int N, X;
