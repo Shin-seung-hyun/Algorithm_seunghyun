@@ -1,5 +1,6 @@
 import java.util.*;
 
+//투 포인터
 class Main{
     static int N;
 
@@ -17,9 +18,6 @@ class Main{
         int cnt = 0;
 
         while(left <= N){
-            if(sum ==N){
-                cnt++;
-            }
 
             if(sum < N){
                 sum += right;
@@ -29,6 +27,8 @@ class Main{
                 sum -= left;
                 left++;
             }
+
+            if(sum ==N) cnt++;
         }
 
         System.out.println(cnt);
