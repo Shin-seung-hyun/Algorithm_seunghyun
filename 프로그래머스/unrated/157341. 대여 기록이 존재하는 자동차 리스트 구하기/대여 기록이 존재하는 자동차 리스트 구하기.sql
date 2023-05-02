@@ -1,0 +1,13 @@
+# 대여 중인 자동차들의 정보     CAR_RENTAL_COMPANY_CAR
+# 자동차 대여 기록 정보        CAR_RENTAL_COMPANY_RENTAL_HISTORY
+
+-- 자동차 종류가 '세단'인 자동차들 중 10월에 대여를 시작한 기록이 있는 자동차 ID 리스트를 출력
+-- 자동차 ID 리스트는 중복이 없어야 하며, 자동차 ID를 기준으로 내림차순 정렬
+
+-- SELECT DISTINCT(CAR.CAR_ID)
+
+SELECT DISTINCT(CAR.CAR_ID)
+FROM CAR_RENTAL_COMPANY_CAR AS CAR JOIN CAR_RENTAL_COMPANY_RENTAL_HISTORY AS HISTORY ON CAR.CAR_ID = HISTORY.CAR_ID
+WHERE   CAR.CAR_TYPE LIKE '세단' AND
+        MONTH(START_DATE) = '10'
+ORDER BY CAR.CAR_ID DESC;
