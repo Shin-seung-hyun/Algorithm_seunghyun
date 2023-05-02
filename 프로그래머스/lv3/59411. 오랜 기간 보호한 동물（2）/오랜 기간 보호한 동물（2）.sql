@@ -1,0 +1,12 @@
+# ANIMAL_INS   동물 보호소에 들어온 동물의 정보
+# ANIMAL_OUTS  동물 보호소에서 입양 보낸 동물의 정보
+
+-- 입양을 간 동물 중, 보호 기간이 가장 길었던 동물 두 마리의 아이디와 이름을 조회
+-- 보호 기간이 긴 순으로 조회
+   
+SELECT ANIMAL_ID, NAME
+FROM(
+    SELECT  INS.ANIMAL_ID, INS.NAME, OUTS.DATETIME - INS.DATETIME AS TOTAL_DATETIME 
+    FROM ANIMAL_INS AS INS JOIN ANIMAL_OUTS AS OUTS ON INS.ANIMAL_ID = OUTS.ANIMAL_ID
+    ORDER BY TOTAL_DATETIME DESC
+    LIMIT 2) AS TEMP
