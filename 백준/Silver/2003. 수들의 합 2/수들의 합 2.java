@@ -15,9 +15,8 @@ public class Main{
         M = Integer.parseInt(st.nextToken());
 
         arr = new int[N+1];
-        st = new StringTokenizer(br.readLine());
         for(int i = 1; i<= N; i++){
-            arr[i] = Integer.parseInt(st.nextToken());
+            arr[i] = Integer.parseInt(br.readLine());
         }
 
         twoPointer();
