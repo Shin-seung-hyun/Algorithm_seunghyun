@@ -27,23 +27,23 @@ public class Main{
     }
 
     public static void twoPointer(){
-        int answer = -100 * N;
+        int result = -100 * N;
         int sum = 0;
-        int right =0;
-        for(int left = 1; N - left +1 >= K; left++){
+        int right =1;
 
-            //left 빼기
-            sum -= arr[left-1];
+        for(int left =1; left <= N-K +1; left++){
 
-            //right 옮길 수 있을 때까지 증가시키기
-            while(right+1 <=N && right - left +1 <K){
-                sum += arr[++right];
+            while(right <=N && (right- left)+1 <=K){
+                sum = sum + arr[right];
+                right++;
             }
 
-            answer = Math.max(answer, sum);
+            result = Math.max(result,sum);
+
+            sum = sum - arr[left];
         }
 
-        System.out.println(answer);
+        System.out.println(result);
     }
 
 }
