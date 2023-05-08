@@ -20,29 +20,13 @@ class Main{
 
         int cnt = 0;
 
-        while(num > 1 ){
-
+        while(Kim != Lim){
+            Kim = Kim / 2 + Kim % 2;
+            Lim = Lim / 2 + Lim % 2;
             cnt++;
-
-            if((Kim/2) != (Lim/2)){
-                if((Kim-Lim ==-1) || (Kim- Lim ==1)) break;
-            }
-
-            if((Kim % 2) ==1 ){
-                Kim = Kim/2 +1;
-            }
-            else Kim = Kim/2;
-
-
-            if((Lim % 2) ==1){
-                Lim = Lim/2 +1;
-            }
-            else Lim = Lim/2;
-
-            num = (num/2) + (num % 2);
         }
+
         System.out.println(cnt);
     }
-
 
 }
