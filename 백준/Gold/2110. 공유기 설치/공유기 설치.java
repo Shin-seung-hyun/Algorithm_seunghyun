@@ -47,7 +47,7 @@ public class Main{
     public static void search(){
 
         int left =1;
-        int right = 1_000_000_000; //10억
+        int right = arr[N];
         int result = 0;
 
         //가능한 설치 거리 중, 가장 작은 설치 거리
