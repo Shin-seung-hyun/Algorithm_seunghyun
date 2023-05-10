@@ -54,7 +54,10 @@ public class Main{
         int right = 1;
 
         for(int left = 1; left < arr.length; left++){
+        //for(int left = 1; left <= N +k -1; left++){
+
             while((right- left +1) <= k && right < arr.length){
+           //while((right- left +1) <= k && right <= N +k -1){
 
                 visit[arr[right]]++;
                 right++;
