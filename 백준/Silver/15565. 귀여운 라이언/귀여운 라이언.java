@@ -26,29 +26,27 @@ public class Main{
         br.close();
     }
 
-    static void twoPointer(){
-        int right =0;
-        int answer = N;
-        int sum = 0;
+    public static void twoPointer(){
+        int right = 0;
+        int cnt = 0;
+        int result  = N;
 
-        for(int left =1; left <= N; left++){
+        for(int left = 1; left <=N; left++){
 
-            //right가 조건에 만족할 때까지 증가
-            while(right +1 <= N && sum <K){
+            while(cnt < K && right< N){
                 right++;
-                if(arr[right] ==1 )sum++;
-
+                if(arr[right] ==1) cnt++;
             }
-            if(sum ==K){
-                answer = Math.min(answer, right - left +1);
-            }
-            
-            //left 감소
-            if(arr[left] ==1 )sum--;
 
+            if(cnt >= K){
+                result = Math.min(right - left + 1, result);
+            }
+
+            if(arr[left] ==1) cnt--;
         }
-        if(answer == N) answer =-1;
-        System.out.println(answer);
+
+        if(result == N) result = -1;
+        System.out.println(result);
     }
 
 }
