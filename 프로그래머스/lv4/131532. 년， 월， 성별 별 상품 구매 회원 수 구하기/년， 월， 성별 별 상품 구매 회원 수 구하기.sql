@@ -1,0 +1,19 @@
+-- 회원 가입 정보 USER_INFO
+-- 상품 판매 정보 ONLINE_SLAE
+
+-- 년,월,성별 별로 상품을 구매한 회원수 집계
+-- 년월성별 ASC;
+-- 성별 정보가 없는 경우 결과에서 제외
+
+SELECT  YEAR(SALES_DATE) AS YEAR,
+        MONTH(SALES_DATE) AS MONTH,
+        GENDER,
+        COUNT(DISTINCT INFO.USER_ID)AS USERS
+
+FROM    USER_INFO AS INFO 
+        JOIN ONLINE_SALE AS SALE 
+        ON INFO.USER_ID = SALE.USER_ID
+
+WHERE GENDER IS NOT NULL
+GROUP BY YEAR, MONTH, GENDER
+ORDER BY YEAR, MONTH, GENDER ASC;
