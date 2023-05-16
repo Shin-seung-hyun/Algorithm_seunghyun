@@ -1,6 +1,9 @@
 import java.io.*;
 import java.util.*;
 
+//방법1. 전체 BF
+    // 1. 버스의 모든 시간을 입력하여 정렬한다. -> 시간 복잡도가 O(NC) 임으로 BF 가 가능하다.
+
 public class Main {
 
     static int N;   // 버스 종류
