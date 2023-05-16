@@ -56,30 +56,25 @@ class Main{
             return;
         }
 
-
         // 버스 시간 내에 터미널에 도착했을 때
-        long left = 0;
-        long right = busTime.size()-1;
-        long result = 0;
+        int left = 0;
+        int right = arr.size()-1;
+        int result = 0;
 
         while(left <= right){
 
-            long mid = (left + right)/2;
+            int mid = (left + right)/2;
 
-            if(busTime.get((int)mid) == T){
-                System.out.println(0);
-                return;
-            }
-            else if (busTime.get((int)mid) > T ){
-                result = mid;
+            if( T  <= arr.get(mid)){
                 right = mid -1;
+                result  = mid;
             }
             else{
-                left = mid + 1;
+                left = mid +1;
             }
         }
 
-        System.out.println(busTime.get((int)result) - T);
+        System.out.println( arr.get(result) - T);
     }
 
 }
