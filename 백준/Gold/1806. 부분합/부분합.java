@@ -23,7 +23,7 @@ public class Main{
     public static void twoPointer(){
         int right = 0;
         int sum = 0;
-        int answer = N+1;   //S를 넘는 값들 중 가장 짧은 것을 기록
+        int answer = N+1;   // answer의 최대값(N)을 넘는 범위 설정
 
         for(int left = 1; left <= N; left++){
 
@@ -40,6 +40,20 @@ public class Main{
                 answer = Math.min(answer, right -left +1);
             }
         }
+
+
+//        for(int left =1; left <=N; left++){
+//
+//            while(sum < S && ++right <=N){
+//                sum += arr[right];
+//            }
+//
+//            if(sum >= S){
+//                result = Math.min(result, right - left + 1);
+//                sum -= arr[left];
+//            }
+//
+//        }
 
         if(answer == N+1) answer =0;
         System.out.println(answer);
