@@ -94,7 +94,7 @@ public class Main{
                 int ny = y + dir[l][2];
 
                 //범위에서 벗어나지 않고
-                if(nx <0 || ny <0 || nz <0 || nx >N || ny >M || nz >H) continue;
+                if(nx <=0 || ny <=0 || nz <=0 || nx >N || ny >M || nz >H) continue;
 
                 //방문 하지 않은 곳이고
                 if(dist[nz][nx][ny] != -1) continue;
