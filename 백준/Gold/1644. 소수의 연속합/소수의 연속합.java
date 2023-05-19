@@ -40,6 +40,7 @@ class Main{
             if(!primeCheck[i]) continue;
 
             //i의 배수 false로 만들기
+                // j = i * 2 도 가능
             for(int j = i * i; j <= N; j = j+i){
                 primeCheck[j] = false;
             }
@@ -63,10 +64,11 @@ class Main{
     }
     static void twoPointer() {
 
-        if(N ==1){
-            System.out.println(0);
-            return;
-        }
+        // 없어도 됨
+//        if(N ==1){
+//            System.out.println(0);
+//            return;
+//        }
 
         // 방법1
         int right = 0;
