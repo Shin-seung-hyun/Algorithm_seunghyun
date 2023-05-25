@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class test {
+public class Main {
     static int N;           //용액의 수
     static long[] arr;      //용액 배열
     static long[] answer;   //결과 값
@@ -25,6 +25,8 @@ public class test {
 
         //첫번재 용액의 위치(i) 정하고, 두 포인터를 이용하여 나머지 두 용액 정하기
         interval = Long.MAX_VALUE;
+
+        // 가장 왼쪽부터 시작해서 가장 오른쪽 끝까지
         for(int i = 1; i <= N-2; i++) {
             twoPointer(i);
         }
