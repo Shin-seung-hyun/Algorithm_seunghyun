@@ -26,8 +26,8 @@ class Main{
             }
         }
 
-        DFS(1,1,0);
-        //DFS2(1,1,0);
+        //DFS(1,1,0);
+        DFS2(1,1,0);
 
         System.out.println(answer);
     }
