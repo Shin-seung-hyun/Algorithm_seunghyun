@@ -48,6 +48,7 @@ class Main{
         //빈 벽 중에서 3개 뽑아 벽 세우기
         DFS(1,0);
 
+        //최대 안전영역 출력
         System.out.println(answer);
     }
 
@@ -80,18 +81,24 @@ class Main{
     }
 
     //2. 바이러스 퍼뜨리기
-    static void BFS(){
+    static void BFS() {
         Queue<Integer> queue = new LinkedList<>();
 
+        //초기화
+        ///Arrays.fill은 1차원 배열에서만 사용 가능
+        for (boolean[] val : visit) {
+            Arrays.fill(val, false);
+        }
+
         //시작점 큐에 넣기
-            //시작점이 여러 개 일때 -> 모든 바이러스 위치를 큐에 넣어준다
-        for(int i =1; i<=N; i++){
-            for(int j =1; j<=M; j++){
+        //시작점이 여러 개 일때 -> 모든 바이러스 위치를 큐에 넣어준다
+        for (int i = 1; i <= N; i++) {
+            for (int j = 1; j <= M; j++) {
 
                 //visit 초기화
-                visit[i][j] = false;
+                //visit[i][j] = false;
 
-                if(arr[i][j] ==2){
+                if (arr[i][j] == 2) {
                     queue.add(i); //x 좌표
                     queue.add(j); //y 좌표
 
@@ -100,23 +107,23 @@ class Main{
             }
         }
 
-        while(!queue.isEmpty()){
+        while (!queue.isEmpty()) {
             int x = queue.poll();
             int y = queue.poll();
 
             //상하좌우 퍼뜨리기
-            for(int k =0; k< 4; k++){
+            for (int k = 0; k < 4; k++) {
                 int nx = x + dir[k][0];
                 int ny = y + dir[k][1];
 
                 //좌표를 넘지 않으면 안됨
-                if(nx <0 || ny <0 || nx >N || ny >M) continue;
+                if (nx <= 0 || ny <= 0 || nx > N || ny > M) continue;
 
-                //빈 벽이 아니면 안됨
-                if(arr[nx][ny] != 0) continue;
+                //빈 벽만 됨
+                if (arr[nx][ny] != 0) continue;
 
                 //방문 했던 곳이면 안됨
-                if(visit[nx][ny] == true) continue;
+                if (visit[nx][ny] == true) continue;
 
                 //해당 조건에 모두 해당하지 않으면
                 visit[nx][ny] = true;
@@ -126,14 +133,21 @@ class Main{
         }
 
         //안전 영역의 넓이 계산
+        safetyZone();
+    }
+
+    static int safetyZone(){
         int cnt =0;
         for(int i =1; i<=N; i++){
             for(int j =1; j<=M; j++){
 
-                if(arr[i][j] == 0 && visit[i][j] ==false) cnt++;
+                //방문했다의 의미는 바이러스가 퍼졌다는 의미이다. 따라서 0이면서 방문하지 않은 곳 확인
+                if(arr[i][j] == 0 && visit[i][j] == false) cnt++;
             }
         }
 
+        //최대 안전영역 찾기
         answer = Math.max(answer, cnt);
     }
+
 }
