@@ -26,62 +26,49 @@ class Main{
             }
         }
 
+        // 정상일 때
+        int normal_cnt = 0;
         for(int i =1; i<=N; i++){
             for(int j=1; j<=N; j++){
 
                 if(visit[i][j]) continue;
 
                 BFS(i, j, arr[i][j]);
-                if(arr[i][j] == 'R') rgb[0]++;
-                else if (arr[i][j] == 'G') rgb[1]++;
-                else rgb[2]++;
+                normal_cnt++;
+//                if(arr[i][j] == 'R') rgb[0]++;
+//                else if (arr[i][j] == 'G') rgb[1]++;
+//                else rgb[2]++;
             }
         }
 
+        //초기화
         for(boolean[] val : visit){
             Arrays.fill(val, false);
         }
 
+        //ConvertR2G
+        for(int i =1; i<=N; i++){
+            for(int j =1; j<=N; j++){
+                if(arr[i][j] == 'R') arr[i][j] = 'G';
+            }
+        }
+
+        //비정상일 때
+        int abnormal_cnt = 0;
         for(int i =1; i<=N; i++){
             for(int j =1; j<=N; j++){
                 if(visit[i][j]) continue;
 
-                if(arr[i][j] != 'B'){
-                    BFS(i,j);
-                    rb++;
-                }
+                BFS(i, j, arr[i][j]);
+                abnormal_cnt++;
+
             }
         }
-        //System.out.println(rgb[0] +" " + rgb[1] +" "+ rgb[2]);
-        System.out.println( (rgb[0]+ rgb[1]+ rgb[2]) + " " + (rb+ rgb[2]));
+
+        System.out.println( normal_cnt+ " " + abnormal_cnt++);
+        //System.out.println( (rgb[0]+ rgb[1]+ rgb[2]) + " " + abnormal_cnt++);
 
     }
-    static void BFS(int x, int y){
-        Queue<Integer> queue = new LinkedList<>();
-
-        queue.add(x);
-        queue.add(y);
-        visit[x][y]= true;
-
-        while(!queue.isEmpty()){
-            x = queue.poll();
-            y = queue.poll();
-
-            for(int i =0; i<4; i++){
-                int nx = x + dist[i][0];
-                int ny = y + dist[i][1];
-
-                if(nx <=0 || ny<=0 || nx >N || ny >N) continue;
-                if(visit[nx][ny]) continue;
-                if(arr[nx][ny] == 'B' ) continue;
-
-                queue.add(nx);
-                queue.add(ny);
-                visit[nx][ny] = true;
-            }
-        }
-    }
-
     static void BFS(int x, int y, int rgb){
         Queue<Integer> queue = new LinkedList<>();
 
