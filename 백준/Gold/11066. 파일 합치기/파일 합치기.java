@@ -5,8 +5,8 @@ import java.util.*;
 class Main{
 
     static int[] num;
-    static int[][] Dy;
-    static int[][] sum;
+    static int[][] Dy;      // Dy[i][j]: i ~ j번 파일을 하나로 합치는 최소 비용
+    static int[][] sum;     // sum[i][j]: i ~j번 파일의 총 크기
     static int N;
 
     public static void main(String args[]){
@@ -26,11 +26,11 @@ class Main{
                 num[j] = sc.nextInt();
             }
 
-            //sum 배열 계산
+            //sum 배열 미리 계산
             PreProcess();
 
             //Dy 배열 계산
-            Process();
+            DP();
 
             //출력
             System.out.println(Dy[1][N]);
@@ -46,7 +46,7 @@ class Main{
         }
     }
 
-    static void Process(){
+    static void DP(){
 
         for(int len = 2; len<=N; len++){
             for(int i =1; i <= N - len + 1; i++){
