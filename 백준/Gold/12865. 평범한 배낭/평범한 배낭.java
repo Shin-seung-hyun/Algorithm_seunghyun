@@ -7,7 +7,7 @@ public class Main{
     static int K;   // 한계 무게
     static int[] W; //무게 배열
     static int[] V; //가치 배열
-    static int[][] Dy;
+    static int[][] Dy;  //Dy[i번 째 아이템][무게]
 
     public static void main(String[] args)throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
