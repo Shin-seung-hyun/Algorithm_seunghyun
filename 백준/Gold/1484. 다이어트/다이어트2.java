@@ -8,12 +8,12 @@ import java.io.*;
 /// (x+(x-1))(x-(x-1)) = 100_000
 /// 2x = 100_001
 /// x의 최댓값은 50_000
-/// 시간복잡도: x와 y값 이분탐색 O(5만 log(5만))
+/// 시간복잡도: x와 y값 투 포인터 O(N)
 /// 단, 계산의 최대 범위가 5만 * 5만 = 25억임으로 long 타입
 
 public class Main {
     static int G;
-    static int MAX = 100_000;
+    static int MAX = 50_001;
     static ArrayList<Integer> result = new ArrayList<>();
 
     public static void main(String[] args) throws Exception {
