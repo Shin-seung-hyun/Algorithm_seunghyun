@@ -4,7 +4,7 @@ import java.io.*;
 //장애물의 최솟값과 그러한 구간이 총 몇 개 있는지
 // 1. 구간(1 ~ H)에 따른 장애물의 수를 찾는다. 이때, 장애물 수는 U자 곡선을 그리게 된다.
 // 2. 통과 구간(height)이 정해지고 정렬한 석순, 종유석에 대해 binary search로 장애물 수 구하기.
-//    시간 복잡도 O(NlogN + HlogN)
+//    시간 복잡도 O(NlogN(정렬) + H * logN(이분탐색))
 class Main{
     static int N;   // 동굴의 길이
     static int H;   // 높이
@@ -65,7 +65,8 @@ class Main{
         int right = N/2;
         int result = 0;
 
-        //h보다 작은 수 찾기
+        //높이가 height일 때, height 보다 크거나 같은 수의 갯수를 찾기 위해
+            //이분탐색으로 height보다 작은 수의 갯수 구하기
         while(left <= right){
             int mid = (left + right)/2;
 
@@ -76,7 +77,7 @@ class Main{
             }
         }
 
-        // N/2개 중 h보다 큰거나 같은 수의 갯수 구하기
+        // N/2개 중 height 보다 큰거나 같은 수의 갯수 구하기
         int bottom_cnt = N/2 - result;
 
         /* 종유석 탐색 */
