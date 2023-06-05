@@ -13,12 +13,17 @@ public class Main {
  
 		N = in.nextInt();
 		M = in.nextInt();
- 
+
+		// 방법1
 		arr = new int[M];
-        
 		dfs(0);
-		System.out.print(sb);
- 
+		System.out.print(sb.toString());
+
+
+		// 방법2
+		arr = new int[M+1];
+		DFS(1);
+		System.out.println(sb.toString());
 	}
  
 	public static void dfs(int depth) {
@@ -34,6 +39,24 @@ public class Main {
 		for (int i = 1; i <= N; i++) {
 			arr[depth] = i;
 			dfs(depth + 1);
+		}
+	}
+
+	public static void DFS(int depth){
+
+		//종료 조건
+		if(depth == M+1){
+			for(int i =1; i<=M; i++){
+				sb.append(arr[i] + " ");
+			}
+			sb.append("\n");
+			return;
+		}
+
+		// 반복 조건
+		for(int i=1; i<=N; i++){
+			arr[depth]= i;
+			DFS(depth +1);
 		}
 	}
  

@@ -13,8 +13,8 @@ public class Main{
         N = sc.nextInt();
         M = sc.nextInt();
         
-        arr = new int[M];
-        dfs(1,0);
+        arr = new int[M+1];
+        dfs(1,1);
         System.out.print(sb.toString());
         
     }
@@ -22,8 +22,10 @@ public class Main{
     public static void dfs(int at , int depth){
         
         //재귀 종료 조건
-        if(depth == M){
-            for(int val : arr) sb.append(val).append(" ");
+        if(depth == M+1){
+            for(int i =1; i<=M; i++){
+                sb.append(arr[i]).append(" ");
+            }
             sb.append("\n");
             return ;
         }

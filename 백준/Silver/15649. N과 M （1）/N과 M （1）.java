@@ -14,11 +14,17 @@ public class Main {
  
 		N = in.nextInt();
 		M = in.nextInt();
- 
+
+		// 방법1
 		arr = new int[M];
 		visit = new boolean[N];
 		dfs(0);
-        
+
+		// 방법2
+		arr = new int [M+1];
+		visit = new boolean[N+1];
+		DFS(1);
+
         System.out.print(sb.toString());
 	}
  
@@ -39,6 +45,29 @@ public class Main {
 				visit[i] = false;
 			}
 		}
+	}
+
+	public static void DFS(int depth){
+
+		//종료 조건
+		if( depth == M+1){
+			for(int i =1; i<=M; i++){
+				sb.append(arr[i]).append(" ");
+			}
+			sb.append("\n");
+			return;
+		}
+
+		//반복 조건
+		for(int i =1; i<=N; i++){
+			if(visit[i]) continue;
+
+			visit[i] = true;
+			arr[depth] = i;
+			DFS(depth + 1);
+			visit[i] = false;
+		}
+
 	}
  
 }
