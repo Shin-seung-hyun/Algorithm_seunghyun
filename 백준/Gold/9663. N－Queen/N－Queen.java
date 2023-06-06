@@ -1,54 +1,65 @@
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
-//N개 중에서 N개를 중복 o, 순서o 나열하기
-public class Main{
-    
-    public static int N;
-    public static int arr[]; //index 열, value 행
-    public static int cnt =0;
-    
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        
-        N = sc.nextInt();
-        arr = new int[N];
-        
-        N_Queen(0);
-        
-        System.out.print(cnt);
+// 퀸을 놓는 방법의 경우의 수
+///N개 중에서 N개를 중복 o, 순서o 나열하기
+public class Main {
+
+    static int N;
+    static int[] arr;
+    static int answer = 0;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        N = Integer.parseInt(br.readLine());
+
+        arr = new int [N+1];  //index 열, value 행
+
+        N_Queen(1);
+
+        System.out.println(answer);
     }
-    
-    //퀸을 놓아도 되는 자리인지 확인
-    public static boolean Possible(int col){
-        
-        for(int i = 0; i< col; i++){
-            
-            //depth 열의 행값과 i열의 행값이 같을 때 
-            if(arr[col] == arr[i]) return false;
-            
-            //이전의 퀸값과 대각선으로 만날 때
-            else if((arr[col] + col) == (arr[i] + i) || (arr[col] - col) == (arr[i] - i)) return false;
+
+    static boolean Possible(int d ){
+
+        // d 행 이전의 행을 돌면서
+        for(int i =1; i < d; i++){
+
+            // 이전 행의 열과 현재 퀸을 놓은 열이 같다면(상하에서 만날 경우)
+            if(arr[i] == arr[d]) return false;
+
+            // 이전 행과 대각선에서 만날 경우
+                // 이전 행의 퀸을 놓은 자리의 행+열 == 현재 행의 퀸을 놓은 자리의 행 + 열
+            else if ((arr[i] + i) == (arr[d] + d )||
+                    (arr[i] - i) == (arr[d] - d))  return false;
+
         }
+
         return true;
     }
-    
-    public static void N_Queen(int depth){
-        
-        //재귀 종료 조건
-        if(depth == N){
-            cnt++;
+
+    static void N_Queen(int depth){
+
+        // 종료 조건
+        if( depth == N+1){
+            answer +=1;
             return;
         }
-        
-        //재귀 반복
-        for(int i =0; i< N ; i ++){
-           
+
+        // 반복조건
+        // N 행까지 돌면서
+        for(int i =1; i<=N; i++){
+
+            //depth의 행 i 열에 Queen 을 놓는다.
             arr[depth] = i;
-            
+
+            // 퀸을 놓을 수 있는지 확인
             if(Possible(depth)){
                 N_Queen(depth+1);
             }
         }
-        
+
     }
+
 }
