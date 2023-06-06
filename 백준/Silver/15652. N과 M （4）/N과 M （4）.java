@@ -16,7 +16,6 @@ public class Main{
         arr = new int[M+1];
         dfs(1,1);
         System.out.print(sb.toString());
-        
     }
     
     public static void dfs(int at , int depth){
