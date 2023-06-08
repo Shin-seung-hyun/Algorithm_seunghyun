@@ -38,18 +38,18 @@ public class Main {
 
                 // ㅜ모양은 ㅓ,ㅏ,ㅗ로도 가능하므로 인접한 4칸 중 3칸을 선택한다
                     // 중복X, 순서X
-                check(i, j, 0,0, arr[i][j]);
+                check(i, j, 0,1, arr[i][j]);
             }
         }
 
         System.out.println(answer);
     }
 
-    static void check(int y, int x, int at, int cnt, int sum){
+    static void check(int y, int x, int at, int depth, int sum){
 
     // 종료 조건
-        // cnt가 3 인 경우 모두 탐색 완료
-        if( cnt == 3){
+        // depth 4 인 경우 모두 탐색 완료
+        if( depth == 3+1){
             answer = Math.max(answer, sum);
             return;
         }
@@ -61,8 +61,9 @@ public class Main {
             int nx = x + dir[i][1];
 
             if(nx <= 0 || ny <= 0 || ny > N || nx > M ) continue;
-
-            check(y, x, i + 1, cnt + 1, sum + arr[ny][nx]);
+            
+            // y, x 는 고정!!
+            check(y, x, i + 1, depth + 1, sum + arr[ny][nx]);
         }
     }
 
