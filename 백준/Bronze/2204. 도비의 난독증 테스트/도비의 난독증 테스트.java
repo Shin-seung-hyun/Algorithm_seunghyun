@@ -24,6 +24,7 @@ public class Main {
 
             // 대소문자 구분 없이 정렬하는 방법
             Arrays.sort(strArr, 1, N+1, String.CASE_INSENSITIVE_ORDER);
+
             System.out.println(strArr[1]);
         }
     }
