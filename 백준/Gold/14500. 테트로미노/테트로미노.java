@@ -61,7 +61,7 @@ public class Main {
             int nx = x + dir[i][1];
 
             if(nx <= 0 || ny <= 0 || ny > N || nx > M ) continue;
-            
+
             // y, x 는 고정!!
             check(y, x, i + 1, depth + 1, sum + arr[ny][nx]);
         }
