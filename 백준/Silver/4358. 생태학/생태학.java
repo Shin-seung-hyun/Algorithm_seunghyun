@@ -13,8 +13,8 @@ public class Main {
         int totalCnt = 0;
         while(true){
 
-            String str;
-            if((str = br.readLine()) == null) break;
+            String str = br.readLine();
+            if(str == null) break;
 
             hashMap.put(str, hashMap.getOrDefault(str,0) +1);
             totalCnt++;
