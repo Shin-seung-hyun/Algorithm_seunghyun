@@ -1,61 +1,64 @@
 import java.util.*;
 import java.io.*;
 
-public class Main {
-	public static void main(String[] args) throws IOException, NumberFormatException {
+//부분수열 중 길이가 가장 긴 증가하는 팰린드롬
+class Main{
+	static int N;   // 수열의 길이
+	static int[] arr;
+
+	public static void main(String[]args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		int N = Integer.parseInt(br.readLine());
-		
-		int[] s = new int[N];
+
+		N = Integer.parseInt(br.readLine());
+
+		arr = new int[N+1];
 		StringTokenizer st = new StringTokenizer(br.readLine());
-		for (int i = 0; i < N; i++) {
-			s[i] = Integer.parseInt(st.nextToken());
+		for(int i =1; i<=N; i++){
+			arr[i] = Integer.parseInt(st.nextToken());
 		}
-		
-	    int left = 0;
-	    int right = 0;
-	    int answer = 1;
-	    while (right < N - 1)
-	    {
-	        int cnt, l, r;
-	        if (s[right] < s[right + 1])
-	        {
-	            right += 1;
-	        }
-	        else
-	        {
-	            if (s[right] > s[right + 1])
-	            {
-	                cnt = 1;
-	                l = right - 1;
-	                r = right + 1;
-	            }
-	            else
-	            {
-	                cnt = 0;
-	                l = right;
-	            }
-	            r = right + 1;
 
-	            while (l >= left && r < N)
-	            {
-	                if (s[l] == s[r])
-	                {
-	                    cnt += 2;
-	                    l -= 1;
-	                    r += 1;
-	                }
-	                else
-	                    break;
-	            }
-	            answer = Math.max(answer, cnt);
+		twoPointer();
 
-	            right += 1;
-	            left = right;
-	            right = right;
-	        }
-	    }
-	    
-	    System.out.println(answer);
+	}
+
+	static void twoPointer() {
+		int left = 1;
+		int right = 1;
+		int answer = 1;
+
+		while (right < N) {
+			int cnt, l, r;
+			if (arr[right] < arr[right + 1]) right += 1;
+
+			else {
+				if (arr[right] > arr[right + 1]) {
+					cnt = 1;
+					l = right - 1;
+					r = right + 1;
+				}
+
+				else {
+					cnt = 0;
+					l = right;
+				}
+
+				r = right + 1;
+
+				while (l >= left && r <= N) {
+					if (arr[l] == arr[r]) {
+						cnt += 2;
+						l -= 1;
+						r += 1;
+					}
+					else break;
+				}
+				answer = Math.max(answer, cnt);
+
+				right += 1;
+				left = right;
+			}
+		}
+
+		System.out.println(answer);
 	}
 }
