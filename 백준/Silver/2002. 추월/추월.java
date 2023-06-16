@@ -1,6 +1,8 @@
 import java.util.*;
 import java.io.*;
 
+//문자열
+    // HashMap 사용
 class Main{
 
     static int N;
@@ -36,4 +38,23 @@ class Main{
 
         System.out.println(answer);
     }
+/*
+
+N = 4
+
+입장      HashMap<String,Integer>
+ZG431SN     1
+ZG5080K     2
+ST123D      3
+ZG206A      4
+
+퇴장        arr[]
+ZG206A      4
+ZG431SN     1
+ZG5080K     2
+ST123D      3
+
+*/
+
+
 }
