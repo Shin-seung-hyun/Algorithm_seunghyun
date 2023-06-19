@@ -29,6 +29,7 @@ class Main{
         for (int i = 1; i < N; i++) {
             for (int j = i + 1; j <= N; j++) {
 
+                // 추월한 차 찾기
                 if (arr[i] > arr[j]) {
                     answer++;
                     break;
