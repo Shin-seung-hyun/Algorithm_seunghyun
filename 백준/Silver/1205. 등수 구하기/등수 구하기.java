@@ -44,6 +44,7 @@ class Main{
         for(int i=1; i<=N; i++){
 
             if(conv[i] > newScore) rank++;
+            else break;
         }
 
         System.out.println(rank);
