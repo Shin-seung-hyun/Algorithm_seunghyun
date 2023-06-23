@@ -42,10 +42,10 @@ class Main{
 
         //출력
         for(int i = 1; i<=N; i++){
-            if(i % 20 == 1 && i !=1) sb.append("\n");
-
             if( OnOff[i]) sb.append( "1 ");
             else sb.append("0 ");
+
+            if(i % 20 == 0) sb.append("\n");
         }
 
         System.out.print(sb.toString());
@@ -55,12 +55,10 @@ class Main{
 
         // num의 배수 스위치 변경
         int index = num;
-        int cnt =1;
         while( index <= N){
             OnOff[index] = !OnOff[index];
 
-            cnt ++;
-            index = num * cnt;
+            index = index + num;
         }
     }
 
