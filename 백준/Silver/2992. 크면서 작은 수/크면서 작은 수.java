@@ -2,11 +2,11 @@ import java.io.*;
 import java.util.*;
 
 // 문자열
-class Main{
+class test{
     static String X;
     static int []arr;
     static boolean[] visit;
-    static ArrayList<Integer> arrayList = new ArrayList<>();
+    static int min = Integer.MAX_VALUE;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -16,16 +16,13 @@ class Main{
         visit = new boolean[X.length()];
 
         // N 개중에 M 개를 중복 X 순서 O  나열하기
-        DFS(0,  arr);
+        DFS(0);
 
-        Collections.sort(arrayList);
-        //for(int i =0;  i< arrayList.size();i++) System.out.println(arrayList.get(i));
-
-        if( arrayList.size() == 0) System.out.println(0);
-        else System.out.println(arrayList.get(0));
+        if( min == Integer.MAX_VALUE) System.out.println(0);
+        else System.out.println(min);
     }
 
-    static void DFS(int depth, int [] arr){
+    static void DFS(int depth){
 
         // 종료 조건
         if( depth == X.length()){
@@ -37,7 +34,7 @@ class Main{
                 len--;
             }
 
-            if(num > Integer.parseInt(X)) arrayList.add(num);
+            if(num > Integer.parseInt(X)) min = Math.min(min , num);
             return;
         }
 
@@ -47,11 +44,10 @@ class Main{
 
             visit[i]= true;
             arr[depth] = X.charAt(i) - '0';
-            DFS(depth+1,  arr);
+            DFS(depth+1);
 
             visit[i] = false;
         }
     }
-
 
 }
