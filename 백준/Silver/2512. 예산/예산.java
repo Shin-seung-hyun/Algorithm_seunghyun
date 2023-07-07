@@ -1,69 +1,69 @@
 import java.util.*;
+import java.io.*;
 
 //이분 탐색
-    //매개 변수 탐색 알고리즘
-    // N개의 지방 예산 요청액 중 최대의 총 예산 금액은?
-    // 예산 금액이 C일 때, N * 예산 요청액이 <= M인가?
-    // 배정된 예산들 중 최댓값인 정수를 구하시오
-public class Main{
+//매개 변수 탐색 알고리즘
+// N개의 지방 예산 요청액 중 최대의 총 예산 금액은?
+// 예산 금액이 C일 때, N * 예산 요청액이 <= M인가?
+// 배정된 예산들 중 최댓값인 정수를 구하시오
+class Main{
 
-    public static int N,M;
-    public static int arr[];
+    static int N;   // 지방수
+    static int M;   // 총 예산
+    static int [] cost;
 
-    public static void main(String args[]){
-        Scanner sc = new Scanner(System.in);
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-        N = sc.nextInt();   //지방의 수
+        N = Integer.parseInt(br.readLine());
 
-        arr = new int[N + 1];
-
-        for(int i = 1; i<=N; i++){
-            arr[i] = sc.nextInt();
+        cost = new int [N+1];
+        st = new StringTokenizer(br.readLine());
+        for(int i=1; i<=N; i++){
+            cost[i] = Integer.parseInt(st.nextToken());
         }
 
-        M = sc.nextInt();   //총 예산
+        M = Integer.parseInt(br.readLine());
 
-        System.out.println(search());
+        // 정렬
+        Arrays.sort(cost,1,N+1);
+
+        search();
     }
-
-    public static boolean Possible(int totalCnt){
-        int sum = 0;
-
-        for(int i =1 ;i <=N; i++){
-            if(arr[i] >= totalCnt) sum += totalCnt;
-            else sum += arr[i];
+    static boolean determin(int c){
+        int sum =0;
+        for(int i =1; i<=N; i++){
+            if( cost[i] >= c) sum += c;
+            else sum += cost[i];
         }
 
-        return sum <= M;
+        return M >= sum;
     }
 
-    public static int search(){
-
-        //N 값의 범위 : 1 <= N <= 100_000
+    static void search(){
+        //N 값의 범위 : 3 <= N <= 10_000
+        //cost[i] 의 범위 1 <= cost[i] <= 100_000
         //M 값의 범위 : N <= M <= 1_000_000_000
+
+        //모든 result의 값은 arr의 최댓값을 넘기 않는다.
+        //determin(mid)함수에서 모두가 원하는 만큼의 돈을 받을 수 있어도 무한대까지 늘어나기 때문에 범위를 지정해야 한다.
         int left = 1;
-        int right = 0;
+        int right = cost[N];
         int result = 0;
 
-        //right 값의 범위를 지정해 줌
-        //모든 result의 값은 arr의 최댓값을 넘기 않는다.
-        //Possible(mid)함수에서 모두가 원하는 만큼의 돈을 받을 수 있어도 무한대까지 늘어나기 때문에 범위를 지정해야 한다.
-        for(int i = 1; i<=N ; i++){
-            right = Math.max(right, arr[i]);
-        }
-        while(left <= right){
+        while( left <= right){
+            int mid = (left  + right)/2;
 
-            int mid = (left + right)/2;
-            if(Possible(mid)){
+            if( determin(mid)){
                 left = mid +1;
-                result = mid;
+                result  = mid;
             }
             else{
-                right = mid - 1;
+                right = mid -1;
             }
         }
 
-        return result;
+        System.out.println(result);
     }
-
 }
