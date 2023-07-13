@@ -19,8 +19,8 @@ class Main{
             String inputStr = br.readLine();
             String goalStr = br.readLine();
 
-            int Wcnt = 0;
-            int Bcnt = 0;
+            int Wcnt = 0;   // W 로 바꿔야할 수
+            int Bcnt = 0;   // B 로 바꿔야할 수
 
             for(int j = 1; j<= N; j++){
                 if(inputStr.charAt(j-1) != goalStr.charAt(j-1)){
