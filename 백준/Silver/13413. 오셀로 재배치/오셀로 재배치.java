@@ -30,8 +30,9 @@ class Main{
                 }
             }
 
-            if( Wcnt <= Bcnt) sb.append( Bcnt+ "\n");
-            else sb.append(Wcnt + "\n");
+            //min(W, B)로 1번 규칙의 짝을 맞추고, 남는 값 (|W-B|) 으로 2번 규칙에 적용한다.
+            int cnt = cnt = Math.min(Wcnt , Bcnt) + Math.abs(Wcnt - Bcnt);
+            sb.append(cnt +"\n");
         }
 
         System.out.println(sb.toString());
