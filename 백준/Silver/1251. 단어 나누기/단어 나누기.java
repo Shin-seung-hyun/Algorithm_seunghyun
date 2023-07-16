@@ -16,7 +16,9 @@ class Main {
                 StringBuilder strSb1 = new StringBuilder(word.substring(0, j));
                 StringBuilder strSb2 = new StringBuilder(word.substring(j, i));
                 StringBuilder strSb3 = new StringBuilder(word.substring(i));
-                
+
+                // StringBuilder를 통한 문자열 뒤집기
+                    // StringBuilder.reverse().toString();
                 String str1 = strSb1.reverse().toString();
                 String str2 = strSb2.reverse().toString();
                 String str3 = strSb3.reverse().toString();
