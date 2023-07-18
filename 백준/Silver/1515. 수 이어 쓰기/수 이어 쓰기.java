@@ -9,23 +9,21 @@ public class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         String str = br.readLine();
-        int index = 0;
+        int strIndex = 0;
 
-        int maxNum = 1;
-        while (maxNum <= 30000) {
-            String tmp = String.valueOf(maxNum);
+        for(int N=1; N< 30_000; N++){
+            String tmp = String.valueOf(N);
 
             for (int i = 0; i < tmp.length(); i++) {
-                if (tmp.charAt(i) == str.charAt(index))
-                    index++;
+                if (tmp.charAt(i) == str.charAt(strIndex))
+                    strIndex++;
 
-                if (index == str.length()) {
-                    System.out.println(maxNum);
+                if (strIndex == str.length()) {
+                    System.out.println(N);
                     return;
                 }
             }
 
-            maxNum++;
         }
 
     }
