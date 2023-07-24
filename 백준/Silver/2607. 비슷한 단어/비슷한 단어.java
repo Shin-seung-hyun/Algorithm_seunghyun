@@ -31,7 +31,7 @@ public class Main {
                 //str 문자열의 알파벳이 standard 알파벳에도 존재하면 cnt++
                 if( check[ str.charAt(j) - 'A'] >0 ){
                     cnt++;
-                    check[ str.charAt(j) - 'A']--;
+                    check[ str.charAt(j) - 'A']--;  // 단어가 중복 등장할 경우 대비
                 }
             }
 
