@@ -23,22 +23,22 @@ public class Main {
         for(int i =1; i<=M; i++){
 
         // 방법1
-//            String[] arrString = br.readLine().split(",");
-//
-//            for( String str : arrString){
-//                if( hashSet.contains(str)){
-//                    hashSet.remove(str);
-//                }
-//            }
+            String[] arrString = br.readLine().split(",");
+
+            for( String str : arrString){
+                if( hashSet.contains(str)){
+                    hashSet.remove(str);
+                }
+            }
 
         // 방법2.
-            st = new StringTokenizer(br.readLine(),",");
-
-            while(st.hasMoreTokens()) {
-                String key = st.nextToken();
-
-                hashSet.remove(key); // hashSet에 존재하는지 확인하지 않아도 됨
-            }
+//            st = new StringTokenizer(br.readLine(),",");
+//
+//            while(st.hasMoreTokens()) {
+//                String key = st.nextToken();
+//
+//                hashSet.remove(key); // hashSet에 존재하는지 확인하지 않아도 됨
+//            }
 
             sb.append(hashSet.size()+ "\n");
         }
