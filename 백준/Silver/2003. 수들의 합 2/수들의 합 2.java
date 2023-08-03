@@ -23,7 +23,26 @@ public class Main{
 
         br.close();
     }
+    public static void twoPointer() {
 
+        int right = 1;
+        int sum = 0;
+        int cnt = 0;
+
+        for (int left = 1; left <= N; left++) {
+
+            while (right <= N && sum < M) {
+                sum = sum + arr[right];
+                right++;
+            }
+
+            if (sum == M) cnt++;
+
+            sum = sum - arr[left];
+        }
+
+        System.out.println(cnt);
+    }
     static void twoPointer(){
         int right =0;
         int answer =0;
