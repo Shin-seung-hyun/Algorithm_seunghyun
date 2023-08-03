@@ -1,54 +1,43 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 // 문자열
-/* 풀이
-    1. 문자열의 길이가 길이가 같으면 바로 비교
-    2. 문자열의 길이가 다르면, 최소공배수를 구하기
-        두 문자열을 최소공배수만큼 늘리기
-    3. 두 문자열 비교
+// 1. 첫번째 문자열 길이 * 두번째 문자열 길이 만큼 늘리기
+// 2. 두 문자열 비교
+public class Main {
 
-*/
-class Main{
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        //StringTokenizer st = new StringTokenizer(br.readLine());
 
         String first = br.readLine();
         String second = br.readLine();
 
-        String F = first;
-        String S = second;
+/* 방법1 */
+//        String f = first.repeat(second.length());
+//        String s = second.repeat(first.length());
+//
+//        if(f.equals(s)) System.out.println(1);
+//        else System.out.println(0);
 
-        if (first.length() != second.length()) {
+/* 방법2 */
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
 
-            // 최소공배수 구하기
-            int len = lcd(first.length(), second.length());
-
-            while (F.length() != len) {
-                F += first;
-            }
-
-            while (S.length() != len) {
-                S += second;
-            }
+        for(int i= 0; i< first.length(); i++){
+            sb2.append(second);
         }
 
-        if (F.equals(S)) System.out.println(1);
+        for(int i=0; i< second.length(); i++){
+            sb1.append(first);
+        }
+
+//      System.out.println(sb1.toString());
+//      System.out.println(sb2.toString());
+
+        if(sb1.toString().equals(sb2.toString())) System.out.println(1);
         else System.out.println(0);
     }
 
-    private static int lcd(int a, int b) {
-        return (a * b) / gcd(a, b);
-    }
-
-    private static int gcd(int a, int b) {
-        int tmp;
-        while (b > 0) {
-            tmp = a % b;
-            a = b;
-            b = tmp;
-        }
-
-        return a;
-    }
 }
+
