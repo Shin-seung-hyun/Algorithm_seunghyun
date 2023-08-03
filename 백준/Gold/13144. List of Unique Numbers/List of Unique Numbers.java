@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-//두 포인터
+//두 포인터 -> #20922번 겹치는 건 싫어와 함께 보기
 public class Main{
 
     public static int N;
