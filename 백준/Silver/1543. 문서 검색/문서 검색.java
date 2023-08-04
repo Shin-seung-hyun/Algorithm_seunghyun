@@ -15,6 +15,7 @@ public class Main {
         input = br.readLine();
         find = br.readLine();
 
+    // 방법1. 완전탐색
         int answer = 0;
         for(int i=0; i + find.length()-1 < input.length(); i++){
 
@@ -22,6 +23,20 @@ public class Main {
         }
 
         System.out.println(answer);
+
+
+    // 방법2. repalce
+
+        // 처음 input 길이 저장
+        int inputLen = input.length();
+
+        // find 문자열 지우기
+        String str = input.replace( find, "");
+
+        int result = (inputLen - str.length() ) / find.length();
+
+        System.out.println(result);
+
     }
 
     static int check( String str){
