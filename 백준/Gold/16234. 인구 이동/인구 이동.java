@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-//
+// BFS 그래프
 public class Main{
 
     static int N,L,R;
@@ -23,7 +23,6 @@ public class Main{
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        // StringBuilder sb = new StringBuilder();
 
         N = Integer.parseInt(st.nextToken());   // N*N 땅
         L = Integer.parseInt(st.nextToken());   // L명 이상
@@ -59,6 +58,7 @@ public class Main{
                 }
             }
 
+            // 더 이상 움직이지 않으면 인구 이동 종료
             if(!isMove){
                 System.out.println(result);
                 return;
@@ -106,8 +106,7 @@ public class Main{
             }
         }
 
-
         return sum;
-    }
+    } // end BFS
 
 }
