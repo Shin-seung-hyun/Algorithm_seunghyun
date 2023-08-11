@@ -82,13 +82,15 @@ public class Main{
         arrList = new ArrayList<>();
 
         queue.add(x); queue.add(y);
-        arrList.add(new Pos(x,y));
         visit[x][y] = true;
 
-        int sum = land[x][y];
+        int sum =0;
         while(!queue.isEmpty()){
             x = queue.poll();
             y = queue.poll();
+
+            sum += land[x][y];
+            arrList.add(new Pos(x,y));
 
             for(int i=0; i<4; i++){
                 int nx = x + dir[i][0];
@@ -96,12 +98,10 @@ public class Main{
 
                 if( nx < 0 || ny <0 || nx >=N || ny>=N ) continue;
                 if( ( Math.abs(land[nx][ny] - land[x][y] ) < L ) ||
-                        ( Math.abs(land[nx][ny] - land[x][y] ) > R ) ) continue;
+                    ( Math.abs(land[nx][ny] - land[x][y] ) > R ) ) continue;
                 if( visit[nx][ny]) continue;
 
                 queue.add(nx); queue.add(ny);
-                arrList.add(new Pos(nx,ny));
-                sum += land[nx][ny];
                 visit[nx][ny] = true;
             }
         }
