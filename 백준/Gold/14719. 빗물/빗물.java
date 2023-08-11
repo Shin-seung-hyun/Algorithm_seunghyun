@@ -25,13 +25,13 @@ public class Main{
             int leftMax = arr[i];
             int rightMax = arr[i];
 
-            // 왼쪽 max 찾기
-            for(int l = i; l >= 0; l--){
+            // 왼쪽 max 찾기 0 ~ i-1
+            for(int l = 0; l < i; l++){
                 leftMax = Math.max(leftMax, arr[l]);
             }
 
-            // 오른쪽 max 찾기
-            for(int r= i; r <= W-1; r++){
+            // 오른쪽 max 찾기 i+1 ~ W-1
+            for(int r= i+1; r < W; r++){
                 rightMax = Math.max(rightMax, arr[r]);
             }
 
