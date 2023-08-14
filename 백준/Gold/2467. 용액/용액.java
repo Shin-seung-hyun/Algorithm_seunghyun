@@ -2,7 +2,7 @@ import java.io.*;
 import java.util.*;
 
 // 투 포인터, 이분 탐색 알고리즘
-    // 투포인터
+// 산성 : 10억 , 알칼리성 : -10억
 public class Main {
 
     static int N;
@@ -18,15 +18,49 @@ public class Main {
         arr = new int [N+1];
         for(int i=1; i<=N; i++) arr[i] = Integer.parseInt(st.nextToken());
 
-        twoPointer();
+        //twoPointer();
+
+        search();
     }
 
+    // 이분 탐색 풀이
+    static void search(){
+
+        long mix = Long.MAX_VALUE;
+        int resultX = 0, resultY = 0;
+
+        for(int i=1; i<=N; i++) {
+            int left = i + 1;
+            int right = N;
+
+            while (left <= right) {
+
+                int mid = (left + right) / 2;
+
+                if (mix > Math.abs(arr[i] + arr[mid])) {
+                    mix = Math.abs(arr[i] + arr[mid]);
+
+                    resultX = arr[i];
+                    resultY = arr[mid];
+                }
+
+                if (arr[mid] >= -arr[i]) right = mid - 1;
+                else left = mid + 1;
+            }
+        }
+
+        System.out.println(resultX +" " + resultY);
+    }
+
+
+
+    // 투 포인터 풀이
     static void twoPointer(){
         int left = 1;
         int right = N;
 
-        long Mix = Integer.MAX_VALUE;
-        int resultX =arr[left], resultY = arr[right];
+        long Mix = Long.MAX_VALUE;
+        int resultX = arr[left], resultY = arr[right];
 
         while( left < right){
 
@@ -48,7 +82,6 @@ public class Main {
         }
 
         System.out.println(resultX +" " + resultY);
-
     }
 
 }
