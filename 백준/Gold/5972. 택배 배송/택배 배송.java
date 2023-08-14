@@ -8,6 +8,7 @@ public class Main {
     static ArrayList<Node>[] adj;
 
     static int[] dist;
+    static boolean[]visit;
 
     static class Node implements Comparable<Node>{
         int vertex;
@@ -39,6 +40,8 @@ public class Main {
         dist = new int [N+1];
         Arrays.fill(dist, 50_000 * 1_000 + 1);
 
+        visit=  new boolean[N+1];
+
         for(int i= 1; i<= M; i++){
             st = new StringTokenizer(br.readLine());
 
@@ -65,6 +68,9 @@ public class Main {
         while(!pq.isEmpty()){
 
             Node cur = pq.poll();
+
+            if( visit[cur.vertex]) continue;
+            visit[cur.vertex] = true;
 
             for(Node next : adj[cur.vertex]){
 
