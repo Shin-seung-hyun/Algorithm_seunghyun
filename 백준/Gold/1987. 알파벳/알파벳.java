@@ -26,14 +26,37 @@ class Main{
             }
         }
 
-        //DFS(1,1,0);
-        DFS2(1,1,0);
+        DFS(1,1,0);
 
         System.out.println(answer);
     }
 
     //DFS 방법1
-    static void DFS(int x, int y, int cnt) {
+    static void DFS(int x, int y ,int cnt ){
+
+        // [x][y] 방문
+        visit[arr[x][y] -'A'] = true;
+        cnt = cnt + 1;
+        answer = Math.max(answer, cnt);
+
+        // 탐색할 수 있는 곳 모두 탐색
+        for(int i =0; i<4; i++) {
+            int nx = x + dist[i][0];
+            int ny = y + dist[i][1];
+
+            if(nx <= 0 || ny <= 0 || nx > R || ny > C) continue;
+
+            if(visit[arr[nx][ny] - 'A']) continue;
+
+            DFS(nx, ny, cnt);
+
+            visit[arr[nx][ny] -'A'] = false;
+        }
+
+    }
+
+    //DFS 방법2
+    static void DFS2(int x, int y, int cnt) {
 
         //종료 조건
         if(visit[arr[x][y] -'A']){
@@ -57,26 +80,5 @@ class Main{
         visit[arr[x][y] -'A'] = false;
     }
 
-    //DFS 방법2
-    static void DFS2(int x, int y ,int cnt ){
-
-        visit[arr[x][y] -'A'] = true;
-        cnt = cnt + 1;
-        answer = Math.max(answer, cnt);
-
-        for(int i =0; i<4; i++) {
-            int nx = x + dist[i][0];
-            int ny = y + dist[i][1];
-
-            if(nx <= 0 || ny <= 0 || nx > R || ny > C) continue;
-
-            if(visit[arr[nx][ny] - 'A']) continue;
-
-            DFS2(nx, ny, cnt);
-
-            visit[arr[nx][ny] -'A'] = false;
-        }
-
-    }
 
 }
