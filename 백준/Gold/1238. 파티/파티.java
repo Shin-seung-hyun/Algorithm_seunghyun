@@ -1,7 +1,10 @@
 import java.io.*;
 import java.util.*;
 
-//다익스트라 알고리즘
+//다익스트라 알고리즘 (216ms)
+    // 모든 정점 -> 모든 정점에 대한 최단거리가 필요한 것이 아니라, 모든 정점-> X까지의 거리만 알면 된다.
+    // 따라서 X를 시작점으로 다익스트라 수행 후, 입력을 반대로 받은 배열에서 X를 시작점으로 다익스트라 수행
+    // -> 총 다익스트라 2회 수행
 public class Main {
     static int N,M,X;
     static ArrayList<Node> [] arrList;
