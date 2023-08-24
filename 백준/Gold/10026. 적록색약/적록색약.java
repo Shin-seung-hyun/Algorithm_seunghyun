@@ -87,6 +87,7 @@ class Main{
                 if(nx <=0 || ny<=0 || nx >N || ny >N) continue;
                 if(visit[nx][ny]) continue;
                 if(arr[nx][ny] != rgb) continue;
+                //if( arr[nx][ny] != arr[x][y]) continue;
 
                 queue.add(nx);
                 queue.add(ny);
