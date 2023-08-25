@@ -51,7 +51,7 @@ public class Main {
                     int diff = Math.abs( arrList.get(i).x - arrList.get(j).x) +
                                 Math.abs( arrList.get(i).y - arrList.get(j).y);
 
-                    // 맨허튼 거리 기준으로 1000 이하라면 간선 연결
+                    // 두 정점 사이의 거리가 1_000 보다 작다면 양방향 그래프 간선 연결
                     if( diff <= 1_000){
                         adj[i].add(j);  // arrList에 저장된 정점 index를 인접리스트 adj 에 저장
                         adj[j].add(i);
