@@ -1,23 +1,34 @@
 class Solution {
     public int solution(int[][] sizes) {
-        int max_row = 0; 
-        int max_col = 0; 
         
-        for(int i=0;i<sizes.length;i++){ 
+        int answer = 0;
+        
+        int row = sizes[0][0];
+        int col = sizes[0][1];
+        for(int i=1; i<sizes.length; i++){
             
-            if(sizes[i][0]<sizes[i][1]){
+            // 크기를 변경해야 한다면
+            if( row < sizes[i][0] || col <sizes[i][1]){
                 
-                int tmp = sizes[i][0];
+                // 뒤집으면 되나요?
+                if(row > sizes[i][1] && col > sizes[i][0]) continue;
                 
-                sizes[i][0] = sizes[i][1];
-                sizes[i][1] = tmp;
+                // 크기 변경하기
+                if( Math.max(row, sizes[i][0]) * Math.max(col,sizes[i][1]) > 
+                   Math.max( row, sizes[i][1]) * Math.max( col, sizes[i][0]) ){
+                       row = Math.max(row, sizes[i][1]);
+                       col = Math.max(col,sizes[i][0]); 
+                }
+                else {
+                    row = Math.max(row,sizes[i][0]);
+                    col = Math.max(col,sizes[i][1]);
+                }
             }
-            
-            if(max_row<sizes[i][0]) max_row = sizes[i][0]; 
-            if(max_col<sizes[i][1]) max_col = sizes[i][1]; 
-            
+        
         }
         
-        return max_col * max_row;
+        //System.out.println( row + " " + col );
+        answer = row * col;
+        return answer;
     }
 }
