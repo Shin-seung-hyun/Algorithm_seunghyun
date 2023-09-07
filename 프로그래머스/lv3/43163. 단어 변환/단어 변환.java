@@ -2,18 +2,15 @@ import java.util.*;
 import java.io.*;
 
 class Solution {
-    
-    static int[] dist;  // 몇 단계를 거치는지 
-    static int answer =0;
     static boolean visit[];
     
     static class Node{
         String str;
-        int idx;
+        int count;
 
-        public Node(String str, int idx){
+        public Node(String str, int count){
             this.str = str;
-            this.idx = idx;
+            this.count = count; // 몇 단계를 거치는지 
         }
     }
     
@@ -21,20 +18,14 @@ class Solution {
 
         //초기화
         visit = new boolean[words.length];
-        dist = new int[words.length + 1];
-
-        // words 안에 target이 있는지 없는지 확인
-        if (Arrays.asList(words).contains(target)) {
 
             // BFS 탐색
-            BFS(begin, target, words);
+        int answer = BFS(begin, target, words);
             
-            return answer;
-        }
-        else return 0;
+        return answer;
     }
 
-    static void BFS(String begin, String target, String[] words){
+    static int BFS(String begin, String target, String[] words){
         Queue<Node> queue = new LinkedList<>();
         
         // 방문
@@ -43,7 +34,10 @@ class Solution {
         while(!queue.isEmpty() ){
             Node node = queue.poll();
 
-            if(node.str.equals(target)) return;
+            if(node.str.equals(target)){
+                
+                return node.count;
+            } 
 
             for(int i =0; i< words.length; i++){
                 int cnt =0;
@@ -59,11 +53,11 @@ class Solution {
 
                 if(cnt == 1){
                     visit[i] = true;
-                    queue.add( new Node( words[i], i+1));
-                    dist[i+1] = dist[node.idx] +1;
-                    answer = dist[i+1];
+                    queue.add( new Node( words[i], node.count+1));
                 }
             }
-        }
+        } // end while
+        
+        return 0;
     }
 }
