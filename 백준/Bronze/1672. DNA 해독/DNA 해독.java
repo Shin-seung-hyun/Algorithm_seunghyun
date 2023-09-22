@@ -1,58 +1,46 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
+
 
 public class Main {
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int N = Integer.parseInt(br.readLine());
-        String str = br.readLine();
-        char before = ' ', after = ' ';
-        after = str.charAt(str.length() - 1);
-        for (int i = N - 1; i >= 0; i--) {
-            before = str.charAt(i);
-            after = decode(before, after);
+
+        int N = Integer.parseInt(br.readLine());   // 염기서열 길이
+        StringBuilder sb = new StringBuilder(br.readLine());
+
+        char [][]role = {
+                {'A','C','A','G'},
+                {'C','G','T','A'},
+                {'A','T','C','G'},
+                {'G','A','G','T'}
+        };
+
+        while(sb.length() > 1){
+
+            int r = check(sb.charAt(sb.length()-2));
+            int c = check(sb.charAt(sb.length()-1));
+
+            sb.delete(sb.length()-2, sb.length());
+
+            sb.append(role[r][c]);
+
+            //System.out.println(sb);
         }
-        System.out.print(after);
+
+        System.out.println(sb);
     }
-    private static char decode(char A, char B) {
-        char result = ' ';
-        if (A == 'A') {
-            if (B == 'A')
-                result = 'A';
-            else if (B == 'G')
-                result = 'C';
-            else if (B == 'C')
-                result = 'A';
-            else if (B == 'T')
-                result = 'G';
-        } else if (A == 'G') {
-            if (B == 'A')
-                result = 'C';
-            else if (B == 'G')
-                result = 'G';
-            else if (B == 'C')
-                result = 'T';
-            else if (B == 'T')
-                result = 'A';
-        } else if (A == 'C') {
-            if (B == 'A')
-                result = 'A';
-            else if (B == 'G')
-                result = 'T';
-            else if (B == 'C')
-                result = 'C';
-            else if (B == 'T')
-                result = 'G';
-        } else if (A == 'T') {
-            if (B == 'A')
-                result = 'G';
-            else if (B == 'G')
-                result = 'A';
-            else if (B == 'C')
-                result = 'G';
-            else if (B == 'T')
-                result = 'T';
+
+    static int check(char c ){
+
+        switch(c){
+            case 'A' : return 0;
+            case 'G' : return 1;
+            case 'C' : return 2;
+            case 'T' : return 3;
         }
-        return result;
+        return 0;
     }
+
 }
