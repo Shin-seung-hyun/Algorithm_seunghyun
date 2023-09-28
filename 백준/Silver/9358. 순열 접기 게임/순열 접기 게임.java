@@ -1,49 +1,45 @@
 import java.io.*;
+import java.util.*;
+
 public class Main {
-    public static void main(String[] args)throws IOException{
+    static StringBuilder sb = new StringBuilder();
+
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int t = Integer.parseInt(br.readLine());
-        boolean[] winner = new boolean[t];
-        for (int i = 0; i < t; i++) {
-            int n = Integer.parseInt(br.readLine());
-            String[] input1 = br.readLine().split(" ");
-            int[] input = new int[input1.length];
-            for (int j = 0; j < n; j++) {
-                input[j] = Integer.parseInt(input1[j]);
+        StringTokenizer st;
+
+        int testCase = Integer.parseInt(br.readLine());
+
+        for(int t = 1; t<=testCase; t++){
+
+            String winner = "";
+            ArrayList<Integer> arrList = new ArrayList<>();
+
+            int N = Integer.parseInt(br.readLine());
+            st = new StringTokenizer(br.readLine());
+            for(int i=0; i<N; i++){
+                arrList.add(Integer.parseInt(st.nextToken()));
             }
-            winner[i] = whowin(Fold(input));
-        }
-        for (int i = 0; i < t; i++) {
-            System.out.printf("Case #%d: ", i+1);
-            if(winner[i]){
-                System.out.printf("Alice\n");
-            }else{
-                System.out.printf("Bob\n");
+
+            while(arrList.size() != 2){
+                int size = arrList.size();
+
+                for(int i=0; i<= size/2; i++){
+                    arrList.add( arrList.get(i) + arrList.get(size -1 -i));
+                }
+
+                while( size != 0){
+                    arrList.remove(0);
+                    size--;
+                }
+
             }
+            if( arrList.get(0) > arrList.get(1) ) winner = "Alice";
+            else winner = "Bob";
+
+            System.out.println("Case #" + t +": " + winner);
         }
+
     }
-    public static int[] Fold(int[] arr){
-        if(arr.length == 2){
-            return arr;
-        }
-        if(arr.length %2 != 0){
-            int n = (Math.round((float)arr.length / (float) 2));
-            int[] res = new int[n];
-            for (int i = 0; i < n - 1; i++) {
-                res[i] = arr[i] + arr[arr.length -i-1];
-            }
-            res[n-1] = arr[n-1] *2;
-            return Fold(res);
-        }else{
-            int n = arr.length/2;
-            int[] res = new int[n];
-            for (int i = 0; i < n - 1; i++) {
-                res[i] = arr[i] + arr[arr.length-1-i];
-            }
-            return Fold(res);
-        }
-    }
-    public static boolean whowin(int[] arr){
-        return (arr[0] > arr[1]);
-    }
+
 }
