@@ -55,8 +55,8 @@ public class Main {
                 maxY = Math.max(maxY, curY);
             }
 
-            sb.append( (Math.abs(minX) + Math.abs(maxX)) *
-                        (Math.abs(minY) + Math.abs(maxY)) + "\n");
+            // 가로 * 세로
+            sb.append( (maxX - minX) * (maxY - minY) + "\n");
         }
 
         System.out.println(sb.toString());
