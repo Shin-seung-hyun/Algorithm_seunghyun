@@ -39,14 +39,26 @@ public class Main {
         System.out.print(sb.toString());
     }
     static void init(){
+        // 소수 판별 알고리즘 https://st-lab.tistory.com/80
+        // 소수인경우 true, 아닌경우 false
 
         Arrays.fill(check, true);
 
         check[0] = false;
         check[1] = false;
-        check[2] = true;
 
-        for(int i =3; i<=10_000; i++){
+        // 1. 에라토스테네스의 체 : 시간 복잡도 O(N ㏒ (㏒ N))
+        for(int i = 2; i<= Math.sqrt(10_000); i++){
+
+            if(!check[i]) continue;
+
+            for(int j = i * i; j<=10_000; j= j+i){
+                check[j] = false;
+            }
+        }
+
+        // 2. 제곱근 활용 : 시간 복잡도 O(N√N)
+        for(int i =2; i<=10_000; i++){
 
             for(int j = 2; j<= Math.sqrt(i); j++){
                 if( i%j == 0){
@@ -54,8 +66,8 @@ public class Main {
                     break;
                 }
             }
-
         }
+
     }
 
     static boolean happyNum(String num){
