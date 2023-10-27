@@ -2,21 +2,27 @@ import java.util.*;
 import java.io.*;
 
 class Main {
+
+    static StringBuilder sb = new StringBuilder();
+
     static int N, K;
-    static int[] parent = new int[100001];
-    static int[] time = new int[100001];
+
+    static int[] time = new int[100_000 + 1];
+    static int[] parent = new int[100_000 + 1]; // 경로 추적을 위한 역추적 배열
 
     public static void main(String[] args) throws Exception {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-        StringTokenizer st;
+        StringTokenizer st= new StringTokenizer(br.readLine());
 
-        st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         K = Integer.parseInt(st.nextToken());
 
-        bfs();
+    // 탐색
+        BFS();
 
+
+    //출력
+        // 순서대로 출력하기 위해 Stack에 담았다가 출력
         Stack<Integer> stack = new Stack<>();
         stack.push(K);
         int index = K;
@@ -25,8 +31,7 @@ class Main {
             stack.push(parent[index]);
             index = parent[index];
         }
-
-        //출력
+        
         sb.append(time[K] - 1 + "\n");
         while (!stack.isEmpty()) {
             sb.append(stack.pop() + " ");
@@ -35,13 +40,13 @@ class Main {
         System.out.println(sb.toString());
     }
 
-    static void bfs() {
-        Queue<Integer> q = new LinkedList<Integer>();
-        q.add(N);
+    static void BFS() {
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(N);
         time[N] = 1;
 
-        while (!q.isEmpty()) {
-            int now = q.poll();
+        while (!queue.isEmpty()) {
+            int now = queue.poll();
 
             if (now == K) return;
             
@@ -54,13 +59,14 @@ class Main {
 
                 if (next < 0 || next > 100000) continue;
 
-                if (time[next] == 0) {
-                    q.add(next);
+                if (time[next] == 0)
+                    queue.add(next);
                     time[next] = time[now] + 1;
                     parent[next] = now;
-                }
+
             }
-        }
-    }
+        } // end while
+
+    }// end BFS
 }
 
