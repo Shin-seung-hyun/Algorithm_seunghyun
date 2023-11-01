@@ -4,11 +4,22 @@ import java.util.*;
 
 public class Main {
     static boolean[][] visit;
-    static int cnt = 0;
     static int N;
-    static int r2, c2;
-    static int[][] dir = { { -2,-1}, {-2,1}, {0,-2}, {0,2}, {2,-1}, {2,1} };
-    
+    static int r1,c1,r2, c2;
+    static int[][] dir = {{-2, -1}, {-2, 1}, {0, -2}, {0, 2}, {2, -1}, {2, 1}};
+
+    static class Node{
+        int x;
+        int y;
+        int cnt ;
+
+        public Node(int x ,int y, int cnt ){
+            this.x =x;
+            this.y =y;
+            this.cnt = cnt;
+        }
+    }
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
@@ -18,54 +29,46 @@ public class Main {
         visit = new boolean[N][N];
 
         st = new StringTokenizer(br.readLine());
-        int r1 = Integer.parseInt(st.nextToken());
-        int c1 = Integer.parseInt(st.nextToken());
 
+        //출발지 위치
+        r1 = Integer.parseInt(st.nextToken());
+        c1 = Integer.parseInt(st.nextToken());
+
+        //도착지 위치
         r2 = Integer.parseInt(st.nextToken());
         c2 = Integer.parseInt(st.nextToken());
 
-        System.out.print(BFS(r1,c1));
+        BFS(r1, c1);
     }
 
-    static int BFS(int r1, int c1) {
-        Queue<Integer> q1 = new LinkedList<>();
-        Queue<Integer> q2 = new LinkedList<>();
+    static void BFS( int x, int y){
+        Queue<Node> queue = new LinkedList<>();
 
-        q1.add(r1);
-        q2.add(c1);
-        
-        visit[r1][c1] = true;
+        visit[x][y] = true;
+        queue.add(new Node( x, y, 0));
 
-        while (!q1.isEmpty()) {
+        while(!queue.isEmpty()){
 
-            int size = q1.size();
+            Node node = queue.poll();
 
-            for (int i = 0; i < size; i++) {
-                int x = q1.remove();
-                int y = q2.remove();
-
-                if (x == r2 && y == c2) return cnt;
-
-                for (int j = 0; j < 6; j++) {
-
-                    int nx = x + dir[j][0];
-                    int ny = y + dir[j][1];
-
-                    if (nx < 0 || nx > N -1) continue;
-                    if (ny < 0 || ny > N -1) continue;
-                    if( visit[nx][ny]) continue;
-
-                    
-                    visit[nx][ny] = true;
-                    q1.add(nx);
-                    q2.add(ny);
-                    
-                }
+            if( node.x == r2 && node.y == c2){
+                System.out.println(node.cnt);
+                return;
             }
 
-            cnt++;
+            for(int i=0; i<6; i++){
+                int nx = node.x + dir[i][0];
+                int ny = node.y + dir[i][1];
+
+                if( nx < 0 || ny <0 || nx >=N || ny >=N) continue;
+                if( visit[nx][ny]) continue;
+
+                queue.add(new Node(nx,ny, node.cnt+1));
+                visit[nx][ny] = true;
+            }
         }
 
-        return -1;
+        System.out.println(-1);
     }
+
 }
