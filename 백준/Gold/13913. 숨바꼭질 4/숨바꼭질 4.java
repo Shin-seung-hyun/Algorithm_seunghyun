@@ -31,7 +31,7 @@ class Main {
             stack.push(parent[index]);
             index = parent[index];
         }
-        
+
         sb.append(time[K] - 1 + "\n");
         while (!stack.isEmpty()) {
             sb.append(stack.pop() + " ");
