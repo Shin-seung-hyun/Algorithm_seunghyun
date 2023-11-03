@@ -44,7 +44,6 @@ public class Main {
 
                 // M보다 작은 경우의 수 * M보다 큰 경우에서 뽑을 경우 (N-1) - (idx+1) +1
             else sb.append( idx * (N - (idx + 1)) + "\n");
-
         }
 
         System.out.print(sb.toString());
@@ -53,20 +52,21 @@ public class Main {
     static int findIdx(int find){
 
         int left = 0;
-        int right = N;
+        int right = N-1;
+        int result = -1;
+        while( left <= right){
 
-        while( left < right){
             int mid = (left + right)/2;
 
             if( arr[mid] < find){
                 left = mid +1;
             }
             else if ( arr[mid] > find){
-                right = mid;
+                right = mid -1;
             }
-            else return mid;    // arr[mid] == find
+            else return mid;        // arr[mid] == find
         }
 
-        return -1;
+        return result;
     }
 }
