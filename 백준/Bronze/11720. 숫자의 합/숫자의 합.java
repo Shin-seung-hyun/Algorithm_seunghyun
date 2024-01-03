@@ -1,15 +1,17 @@
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
-public class Main{
-    public static void main(String args[]){
+class Main{
+    public static void main(String[] args) throws IOException{
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
         
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        String str = sc.next();
-        int sum = 0;
+        int num = Integer.parseInt(br.readLine());
+        String str = br.readLine();
         
-        for(int i = 0; i < str.length(); i++){
-            sum += str.charAt(i) -'0';
+        int sum =0;
+        for(int i=0; i<num; i++){
+           sum += str.charAt(i) -'0';
         }
         
         System.out.println(sum);
