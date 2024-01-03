@@ -1,15 +1,20 @@
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
-public class Main{
-    public static void main(String args[]){
+class Main{
+    public static void main(String[] args)throws IOException{
+        BufferedReader br =  new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
         
-        Scanner sc = new Scanner(System.in);
+        String str = br.readLine();
         
-        String str = sc.nextLine();
-        
-        for(int i = 1; i<= str.length(); i++){
-            if(i % 10 == 0) System.out.println(str.charAt(i-1));
-            else System.out.print(str.charAt(i-1));
+        for(int i=0; i<str.length(); i++){
+            
+            if( i != 0 && i % 10 == 0) sb.append("\n");
+            
+            sb.append(str.charAt(i));
         }
+        
+        System.out.print(sb.toString());
     }
 }
