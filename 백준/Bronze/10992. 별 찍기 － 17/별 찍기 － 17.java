@@ -9,21 +9,24 @@ class Main{
 
         int N = Integer.parseInt(br.readLine());
 
-        for(int i=1; i<N; i++){
+        for(int i=1; i<=N; i++){
 
+            // 오른쪽 빈 공간
             for(int j=1; j<= N-i; j++) sb.append(" ");
 
-            sb.append("*");
-            for(int j=1; j<=2*(i-1)-1; j++) sb.append(" ");
+            if( i ==N ){
+                for(int j=1; j<=2*N-1; j++) sb.append("*");
+            }
+            else {
+                for (int j = 1; j <= 2 * i - 1; j++){
 
-            if( i >1)
-                sb.append("*");
+                    if( j==1 || j == 2*i-1) sb.append("*");
+                    else sb.append(" ");
+                }
+            }
 
             sb.append("\n");
         }
-
-        for(int i=1; i<=2*N-1; i++) sb.append("*");
-        sb.append("\n");
 
         System.out.print(sb.toString());
     }
