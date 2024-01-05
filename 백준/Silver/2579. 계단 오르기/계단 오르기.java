@@ -12,7 +12,7 @@ class Main{
         Scanner sc = new Scanner(System.in);
         N = sc.nextInt();
 
-        Dy = new int[N+1][N+1];
+        Dy = new int[N+1][2];
         arr = new int[N+1];
         for(int i =1; i<=N; i++){
             arr[i] = sc.nextInt();
