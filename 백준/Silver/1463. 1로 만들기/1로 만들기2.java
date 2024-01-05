@@ -6,10 +6,13 @@ public class Main{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         int N = Integer.parseInt(br.readLine());
-        int Dy[] = new int[N+1];
 
+        int Dy[] = new int[1_000_000 + 1];
+
+        //초기값
         Dy[1] = 0;
 
+        //점화식
         for (int i = 2; i <= N; i++){
 
             // 1을 빼는 경우
