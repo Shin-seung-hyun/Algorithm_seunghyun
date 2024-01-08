@@ -1,53 +1,31 @@
 import java.util.*;
+import java.io.*;
 
-//동적 프로그래밍(DP)
-public class Main{
+class Main{
 
-    static StringBuilder sb = new StringBuilder();
-    static int N;
-    static int[][] Dy;
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        //StringTokenizer st = new StringTokenizer(br.readLine());
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        int testCase = Integer.parseInt(br.readLine());
 
-        int testCase = sc.nextInt();
+        int[][] Dy = new int[40+1][2];
 
-        for(int i =1; i<=testCase; i++){
-            N = sc.nextInt();
+        ///초기화
+        Dy[0][0] = 1;
+        Dy[1][1] = 1;
 
-            //Dy[N][0] : N을 호출했을 때, 0이 몇 번 나오는지
-            //Dy[N][1] : N을 호출했을 때, 1이 몇 번 나오는지
-            Dy = new int[N+1][2];
-
-            DP(N);
-
-            sb.append(Dy[N][0]).append(" ").append(Dy[N][1]).append("\n");
-
+        // 점화식
+        for(int i=2; i<=40; i++){
+            Dy[i][0] = Dy[i-2][0] + Dy[i-1][0];
+            Dy[i][1] = Dy[i-2][1] + Dy[i-1][1];
         }
 
-        System.out.print(sb.toString());
-    }
 
-    static void DP(int x){
+        for(int i=1; i<=testCase; i++) {
+            int N = Integer.parseInt(br.readLine());
 
-        //초기화
-        Dy[0][0] = 1;
-        Dy[0][1] = 0;
-
-
-
-        if(x>=1){
-            Dy[1][0] = 0;
-            Dy[1][1] = 1;
-            
-            if(x>=2){
-
-                for(int i =2; i<=N; i++){
-
-                    Dy[i][0] = Dy[i-1][0] + Dy[i-2][0];
-                    Dy[i][1] = Dy[i-1][1] + Dy[i-2][1];
-                }   
-            }
+            System.out.println(Dy[N][0] + " " + Dy[N][1]);
         }
 
     }
