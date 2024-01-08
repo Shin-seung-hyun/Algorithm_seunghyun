@@ -13,6 +13,7 @@ class Main{
         arr = new int[N+1][N+1];
         Dy = new int[N+1][N+1];
 
+        // arr 배열 입력
         for(int i=1; i<=N; i++){
             StringTokenizer st = new StringTokenizer(br.readLine());
             for(int j =1; j<=i; j++){
@@ -39,6 +40,8 @@ class Main{
 
         for(int i=1; i<=N; i++){
             for(int j=1; j<=N; j++){
+
+                if( i< j) continue;
 
                 Dy[i][j] = Math.max(Dy[i-1][j-1] , Dy[i-1][j]) + arr[i][j];
             }
