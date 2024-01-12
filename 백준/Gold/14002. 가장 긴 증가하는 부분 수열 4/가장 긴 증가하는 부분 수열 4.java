@@ -3,8 +3,7 @@ import java.io.*;
 
 /*
 
-가장 긴 증가하는 부분 수열 + 수열 출력
-
+DP + 역추적
     완전탐색 O(2^N)
     DP O(N^2)
     이분탐색 O(Nlog^N)
@@ -32,6 +31,7 @@ class Main{
         dy[1] = 1;
 
         //점화식
+        int answer = 0;
         for(int i=2; i<=N; i++){
             for(int j=1; j<i; j++){
 
@@ -41,11 +41,15 @@ class Main{
                 }
             }
             dy[i] += 1;
+            answer = Math.max(answer , dy[i]);
         }
 
-    //정답 출력
+
+/* 정답  출력 */
+
+        // [방법2] pre[] 배열로 역순으로 출력하기
         // 수열의 길이
-        int answer = 0;
+        answer = 0;
         int idx =0;
         for(int i=1; i<=N; i++){
 
@@ -55,20 +59,18 @@ class Main{
             }
         }
 
-        //수열 출력
-        int[] result = new int[answer];
-        int i = result.length-1;
+        Stack<Integer> stack = new Stack<>();
         while(true){
-
-            if(idx ==0) break;
-
-            result[i] = arr[idx];
-            i--;
-
+            stack.push(arr[idx]);
             idx = pre[idx];
+            if( idx == 0) break;
+        }
+        
+        System.out.println(answer);
+        
+        while(!stack.isEmpty()){
+            System.out.print(stack.pop() + " ");
         }
 
-        System.out.println(answer);
-        for(int val : result) System.out.print(val + " ");
     }
 }
