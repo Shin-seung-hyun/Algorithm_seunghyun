@@ -2,24 +2,26 @@ import java.util.*;
 import java.io.*;
 
 /*
-`1로 만들기`와 소스 코드 비교! (경로 탐색 X)
-https://www.acmicpc.net/problem/1463
+DP + 역순 출력
 
-    //점화식
-    for (int i = 2; i <= N; i++){
+    `1로 만들기`와 소스 코드 비교! (경로 탐색 X)
+    https://www.acmicpc.net/problem/1463
 
-    // Dy[i] = Math.min( Dy[i-1]+1, Dy[i/2]+1, Dy[i/3]+1)의 개념
-        // 1을 빼는 경우
-        Dy[i] = Dy[i-1] + 1;
+        //점화식
+        for (int i = 2; i <= N; i++){
 
-        // 1을 뺀 경우, 2로 나눈 경우 중 최솟값을 Dy[i] 저장
-        if (i % 2 == 0) Dy[i] = Math.min(Dy[i], Dy[i/2] + 1);
+        // Dy[i] = Math.min( Dy[i-1]+1, Dy[i/2]+1, Dy[i/3]+1)의 개념
+            // 1을 빼는 경우
+            Dy[i] = Dy[i-1] + 1;
 
-        // 1을 뺀 경우와 2로 나눈 경우의 최솟값인, Dy[i]와 3로 나눈 경우 중 최솟값을 Dy[i] 저장
-        if (i % 3 == 0) Dy[i] = Math.min(Dy[i], Dy[i/3] + 1);
-    }
+            // 1을 뺀 경우, 2로 나눈 경우 중 최솟값을 Dy[i] 저장
+            if (i % 2 == 0) Dy[i] = Math.min(Dy[i], Dy[i/2] + 1);
 
-    System.out.println(Dy[N]);
+            // 1을 뺀 경우와 2로 나눈 경우의 최솟값인, Dy[i]와 3로 나눈 경우 중 최솟값을 Dy[i] 저장
+            if (i % 3 == 0) Dy[i] = Math.min(Dy[i], Dy[i/3] + 1);
+        }
+
+        System.out.println(Dy[N]);
 */
 
 class Main{
