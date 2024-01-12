@@ -3,12 +3,11 @@ import java.io.*;
 
 /*
 
-DP + 역추적
-    완전탐색 O(2^N)
-    DP O(N^2)
-    이분탐색 O(Nlog^N)
-    투 포인터 O(N)
-
+    DP + 역추적
+        완전탐색 O(2^N)
+        DP O(N^2)
+        이분탐색 O(Nlog^N)
+        투 포인터 O(N)
 */
 class Main{
 
@@ -32,6 +31,7 @@ class Main{
 
         //점화식
         int answer = 0;
+        int idx =0;
         for(int i=2; i<=N; i++){
             for(int j=1; j<i; j++){
 
@@ -41,36 +41,66 @@ class Main{
                 }
             }
             dy[i] += 1;
-            answer = Math.max(answer , dy[i]);
-        }
 
+        //방법1
+            //answer = Math.max(answer , dy[i]);
 
-/* 정답  출력 */
-
-        // [방법2] pre[] 배열로 역순으로 출력하기
-        // 수열의 길이
-        answer = 0;
-        int idx =0;
-        for(int i=1; i<=N; i++){
-
+        //방법2
             if(answer <dy[i]){
                 answer = dy[i];
                 idx = i;
             }
+
         }
 
-        Stack<Integer> stack = new Stack<>();
+
+/* 정답  출력 */
+        // [방법1] Stack 사용해서 출력하기
+//        int val = answer;
+//        Stack<Integer> stack = new Stack<>();
+//
+//        for(int i=N; i>=1; i--){
+//            if( val == dy[i]) {
+//                stack.push(arr[i]);
+//                val--;
+//            }
+//        }
+//
+//        System.out.println(answer);
+//
+//        while(!stack.isEmpty()){
+//            System.out.println(stack.pop() + " ");
+//        }
+
+
+        // [방법2] pre[] 배열로 역순으로 출력하기
+        stack = new Stack<>();
         while(true){
             stack.push(arr[idx]);
             idx = pre[idx];
             if( idx == 0) break;
         }
-        
+
         System.out.println(answer);
-        
+
         while(!stack.isEmpty()){
             System.out.print(stack.pop() + " ");
         }
 
+//        //수열 출력
+//        int[] result = new int[answer];
+//        int i = result.length-1;
+//        while(true){
+//
+//            if(idx ==0) break;
+//
+//            result[i] = arr[idx];
+//            i--;
+//
+//            idx = pre[idx];
+//        }
+//
+//        System.out.println(answer);
+//        for(int v: result) System.out.print(v + " ");
     }
 }
