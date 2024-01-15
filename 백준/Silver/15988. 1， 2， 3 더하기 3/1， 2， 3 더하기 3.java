@@ -1,39 +1,37 @@
 import java.util.*;
+import java.io.*;
 
-//동적 프로그래밍(DP)
-    //level 1. 진짜 문제와 가짜 문제가 같을 때
+/*
+    DP
+*/
 class Main{
-    static long[] Dy;
-    static StringBuilder sb = new StringBuilder();
+    static int mod = 1_000_000_009;
 
-    public static void main(String[] args) {
-        Scanner sc =new Scanner(System.in);
-        int testCase = sc.nextInt();
+    public static void main(String[]args)throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        StringBuilder sb = new StringBuilder();
 
-        //미리 계산
-        Pre();
+        int testCase = Integer.parseInt(br.readLine());
 
-        for(int i =1; i<=testCase; i++){
-            int N = sc.nextInt();
+        long [] dy = new long[1_000_000+1];
 
-            sb.append(Dy[N]).append("\n");
-        }
-
-        System.out.print(sb.toString());
-    }
-
-    public static void Pre(){
-        Dy = new long[1_000_000 +1];
-
+        //가짜식 dy[i] : i 번째일 때, 1,2,3의 합의로 나타내는 방법의 수
         //초기화
-        Dy[1] = 1;
-        Dy[2] = 2;
-        Dy[3] = 4;
+        dy[1] = 1; // 1
+        dy[2] = 2; // 1+1, 2
+        dy[3] = 4;   // 1+1+1, 2+1, 1+2, 3
 
-        for(int i = 4; i<=1_000_000; i++){
-            Dy[i] = (Dy[i-3] + Dy[i-2] + Dy[i-1]) % 1_000_000_009 ;
+        //점화식
+        for(int i=4; i<= 1_000_000; i++){
+            dy[i] = (dy[i-1] + dy[i-2] + dy[i-3] ) % mod;
         }
+
+        for(int i=1; i<=testCase; i++){
+            int n = Integer.parseInt(br.readLine());
+
+            System.out.println(dy[n]);
+        }
+
     }
-
-
 }
