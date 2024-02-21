@@ -15,21 +15,21 @@ class Main{
 
         //1. num을 연산으로 하나씩 떨구기
         // 4325
-//        while( num > 10){
-//            int idx = num % 10;
-//            numArr[idx]++;
-//
-//            num = num/10;
-//        }
-//        numArr[num]++;
+        while( num > 10){
+            int idx = num % 10;
+            numArr[idx]++;
+
+            num = num/10;
+        }
+        numArr[num]++;
 
 
         //2. String으로 만들어서 하나씩 떨구기
-        String str = String.valueOf(num);
-
-        for(int i =0; i< str.length(); i++){
-            numArr[ str.charAt(i) - '0']++;
-        }
+//        String str = String.valueOf(num);
+//
+//        for(int i =0; i< str.length(); i++){
+//            numArr[ str.charAt(i) - '0']++;
+//        }
 
         //출력
         for(int i =0; i<10; i++) System.out.println(numArr[i]);
