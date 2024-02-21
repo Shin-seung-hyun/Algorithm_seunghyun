@@ -2,6 +2,7 @@ import java.io.*;
 import java.util.*;
 
 //투 포인터
+    //  정렬 O(NlogN) + 탐색 O(N)
     //left는 작은 값부터 올라가면서, right는 큰 값부터 내려가면서 합이 x되는 쌍 찾기.
 public class Main{
 

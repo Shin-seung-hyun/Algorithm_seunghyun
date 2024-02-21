@@ -1,8 +1,10 @@
 import java.util.*;
 import java.io.*;
 
+
  //이분탐색
-    //배열 내에 X - arr[i]가 있는지 탐색
+    // 배열 내에 X - arr[i]가 있는지 탐색
+    // 정렬 O(NlogN) + N개에 대한 이분탐색 O(NlogN)
 public class Main{
 
     public static int N, X;
