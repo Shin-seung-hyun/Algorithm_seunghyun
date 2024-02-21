@@ -15,13 +15,12 @@ class Main{
 
         //1. num을 연산으로 하나씩 떨구기
         // 4325
-        while( num > 10){
+        while( num > 0){
             int idx = num % 10;
             numArr[idx]++;
 
             num = num/10;
         }
-        numArr[num]++;
 
 
         //2. String으로 만들어서 하나씩 떨구기
