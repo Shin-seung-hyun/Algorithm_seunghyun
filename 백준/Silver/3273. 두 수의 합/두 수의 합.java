@@ -1,62 +1,39 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
+//배열
+    //공간복잡도 O(2_000_000), 시간복잡도 O(n)
+public class Main {
 
- //이분탐색
-    // 배열 내에 X - arr[i]가 있는지 탐색
-    // 정렬 O(NlogN) + N개에 대한 이분탐색 O(NlogN)
-public class Main{
+    public static void main(String[] args) throws IOException {
 
-    public static int N, X;
-    public static int[]arr;
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
 
-    public static void main(String args[]){
-        Scanner sc = new Scanner (System.in);
+        int N = Integer.parseInt(br.readLine());
+        int arr[] = new int[N+1];
+        boolean checkArr[] = new boolean[2_000_000 +1];
 
-        N = sc.nextInt();
-        arr = new int[N+1];
-        for(int i = 1; i<=N; i++){
-            //arr[]는 서로 다른 양의 정수
-            arr[i] =sc.nextInt();
+        st  = new StringTokenizer(br.readLine());
+        for(int i=1; i<=N; i++){
+            arr[i] = Integer.parseInt(st.nextToken());
         }
 
-        //이분탐색을 위한 정렬
-        //1 2 3 5 7 9 10 11 12
-        Arrays.sort(arr,1, N+1);
+        int X = Integer.parseInt(br.readLine());
 
-        X = sc.nextInt();
+        int cnt =0;
+        for(int i= 1; i<=N; i++){
 
-        //이분탐색
-        int cnt = 0;
-        for(int i = 1; i<=N-1; i++){
+            int target = X -arr[i];
 
-            //arr[i+1]~ arr[N] 중에서 X - arr[i]가 있는지 탐색
-            // 중복 확인하지 않기 위함
-            cnt += search(i+1, N , X - arr[i]);
+            if( target > 0 && checkArr[target]) cnt++;
+
+            // 중복 cnt++ 방지를 위해 true로 변경
+            checkArr[arr[i]] = true;
         }
 
         System.out.println(cnt);
-    }
 
-    public static int search(int left, int right, int x){
-
-        if(x <=0) return 0;
-
-        while(left <= right){
-            int mid = (left + right)/2;
-
-            if(arr[mid] ==x){
-                return 1;
-            }
-            else if(arr[mid] >x){
-                right = mid -1;
-            }
-            else{
-                left = mid+1;
-            }
-        }
-
-        return 0;
     }
 
 }
