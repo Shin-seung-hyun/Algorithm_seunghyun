@@ -1,6 +1,8 @@
 import java.util.*;
 import java.io.*;
 
+//연결 리스트 LinkedList
+    // iterator 미사용시, 시간초과 발생
 class Main{
     public static void main(String[] args) throws  IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
