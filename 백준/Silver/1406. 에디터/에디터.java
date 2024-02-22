@@ -5,6 +5,7 @@ import java.io.*;
     /*
         LinkedList :      임의의 위치에 삽입/삭제는 한 번에 O(1)복잡도를 지님
                            즉, 최종적으로 O(M)
+                           단, iterator 사용해야 함.
 
         ArrayList,Array : 임의의 위치에 삽입/삭제는 한 번에 O(N) 복잡도를 지님
                           즉, 최종적으로 O(N*M)
