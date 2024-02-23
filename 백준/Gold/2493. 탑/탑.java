@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-//Stack
+//
 public class Main{
 
     static int N;
@@ -38,6 +38,12 @@ public class Main{
 
                 while(true) {
 
+                    if(stack.isEmpty()){ // 탑이 없다면
+                        sb.append("0 ");
+                        stack.push(new Top(i, h));
+                        break;
+                    }
+
                     // stack의 peek 과 현재 h 비교
                     Top pre = stack.peek();
 
@@ -47,13 +53,6 @@ public class Main{
                         break;
                     }
                     else stack.pop();
-
-                    if(stack.isEmpty()){ // 탑이 없다면
-                        sb.append("0 ");
-                        stack.push(new Top(i, h));
-                        break;
-                    }
-
                 }// end while
             }
         } // end for
