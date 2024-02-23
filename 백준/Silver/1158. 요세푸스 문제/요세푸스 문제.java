@@ -4,7 +4,7 @@ import java.io.*;
 //연결 리스트
 /*
 N명의 사람을 담을 배열에
-    LinkedList(연결리스트) 사용 시,
+    LinkedList(연결리스트) 사용 시, 삭제할 위치만 기억하고 있다면(= K번째 요소를 찾기 위해 매번 리스트의 처음부터 순회하지 않고, 이전에 제거된 요소의 위치(idx)부터 시작한다면)
         시간복잡도 : N * O(1) = O(N)
 
     ArrayList, Array 사용 시,
@@ -30,6 +30,7 @@ class Main{
         int idx = 0;
         while(list.size() >0) {
 
+            //매번 리스트의 처음부터 순회하지 않고, 이전에 제거된 요소의 위치(idx)부터 시작 -> O(1)
             idx = (idx + K - 1) % list.size();
             arrList.add(list.remove(idx));
         }
