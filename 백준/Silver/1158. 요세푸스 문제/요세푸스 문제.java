@@ -3,10 +3,11 @@ import java.io.*;
 
 //연결 리스트
 /*
-    LinkedList(연결리스트)
+N명의 사람을 담을 배열에
+    LinkedList(연결리스트) 사용 시,
         시간복잡도 : N * O(1) = O(N)
 
-    ArrayList, Array 풀이 시,
+    ArrayList, Array 사용 시,
         시간복잡도 : N * O(N) = O(N^2)
 */
 
@@ -18,27 +19,19 @@ class Main{
         int N = Integer.parseInt(st.nextToken());   // 사람수
         int K = Integer.parseInt(st.nextToken());   // K번째 사람 제거
 
-        //N명의 사람을 담은 LinkedList
-        //LinkedList<Integer> list = new LinkedList<>();
-        ArrayList<Integer> list = new ArrayList<>();
+        //N명의 사람을 담은 LinkedList O(N), ArrayList O(N^2)
+        LinkedList<Integer> list = new LinkedList<>();
+
         for(int i=1; i<=N; i++) list.add(i);
 
         //요세푸스 순열을 담을 arrList
         ArrayList<Integer> arrList = new ArrayList<>();
 
         int idx = 0;
-        while(list.size() >0){
+        while(list.size() >0) {
 
-            idx = (idx + K -1) % list.size();
-            arrList.add( list.remove(idx));
-
-//            for(int i = 0; i< list.size(); i++){
-//                if( cnt == K-1){
-//                    arrList.add(list.remove(i));
-//                    cnt =0;
-//                }
-//                else cnt++;
-//            }
+            idx = (idx + K - 1) % list.size();
+            arrList.add(list.remove(idx));
         }
 
         //출력
