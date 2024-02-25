@@ -21,9 +21,6 @@ public class Main {
 
         Stack<Top> stack = new Stack<>();
 
-        //초기값 저장
-        stack.push(new Top(0,100_000_001));
-
         st = new StringTokenizer(br.readLine());
         for(int i=1; i<=N; i++){
             int h = Integer.parseInt(st.nextToken());
