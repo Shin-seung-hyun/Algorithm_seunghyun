@@ -1,14 +1,12 @@
 import java.util.*;
 import java.io.*;
 
-//
-public class Main{
-
-    static int N;
+//Stack
+class Main{
 
     static class Top{
-        int height;
         int idx;
+        int height;
 
         public Top(int idx, int height){
             this.idx = idx;
@@ -16,48 +14,49 @@ public class Main{
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws  IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringTokenizer st;
         StringBuilder sb = new StringBuilder();
 
-        N = Integer.parseInt(st.nextToken());   // 탑의 수
+        // N개의 높이가 서로 다른 탑
+        int N = Integer.parseInt(br.readLine());
 
-        Stack<Top>  stack = new Stack<>();
+        //방법1.
+        //Stack<int[]> stack = new Stack<>(); // int[] = {num, height}
+
+        //방법2.
+        Stack<Top> stack = new Stack<>();
 
         st = new StringTokenizer(br.readLine());
         for(int i=1; i<=N; i++){
-
             int h = Integer.parseInt(st.nextToken());
 
-            if(stack.isEmpty()){ // 탑이 없다면
+            if( i == 1 ){
+                stack.push( new Top(1,h ));
                 sb.append("0 ");
-                stack.push(new Top(i, h));
+                continue;
             }
-            else{               // 탑이 있다면
 
-                while(true) {
+            while(true){
+                Top top = stack.peek();
 
-                    if(stack.isEmpty()){ // 탑이 없다면
-                        sb.append("0 ");
-                        stack.push(new Top(i, h));
-                        break;
-                    }
+                if(top.height >= h){
+                    sb.append(top.idx + " ");
+                    stack.push(new Top(i,h));
+                    break;
+                }
+                else stack.pop();
 
-                    // stack의 peek 과 현재 h 비교
-                    Top pre = stack.peek();
-
-                    if (pre.height >= h) {
-                        sb.append(pre.idx + " ");
-                        stack.push(new Top(i, h));
-                        break;
-                    }
-                    else stack.pop();
-                }// end while
+                if( stack.isEmpty()){
+                    sb.append("0 ");
+                    stack.push(new Top(i,h));
+                    break;
+                }
             }
-        } // end for
+        }
 
-        //  출력
-        System.out.println(sb.toString());
+        //출력
+        System.out.print(sb.toString());
     }
 }
