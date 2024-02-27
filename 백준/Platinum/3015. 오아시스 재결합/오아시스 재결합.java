@@ -31,13 +31,17 @@ public class Main {
             
              while(!stack.isEmpty() && stack.peek().height <= h){
 
-                answer += stack.peek().cnt;
+                 //원래는 answer++이지만 중복되는 키를 가진 사람도 저장하기 위해 stack.peek().cnt를 더함.
+                 answer += stack.peek().cnt;
 
-                if( stack.peek().height == h) cnt += stack.peek().cnt;
-                
-                stack.pop();
-            }
+                 if( stack.peek().height == h) cnt += stack.peek().cnt;
 
+                 stack.pop();
+             }
+
+            // stack이 비어있지 않다
+                //  = 스택의 최상단에 있는 사람의 키  > 현재 입력으로 들어온 사람의 키
+                // 현재 처리하고 있는 사람과 짝을 이룰 수 있음으로 answer++
             if(!stack.isEmpty()) answer++;
 
             stack.push(new Pair(h,cnt));
