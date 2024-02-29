@@ -19,62 +19,58 @@ public class Main {
             // 배열에 들어 있는 수
             int N = Integer.parseInt(br.readLine());
 
+            LinkedList<Integer> dq = new LinkedList<>();
+
             /* 방법1 */
             //str.substring(beginIdx 포함, endIdx 미포함)
             String str = br.readLine();
-            String[] arr = str.substring(1, str.length()-1).split(",");
-
-            LinkedList<Integer> dq = new LinkedList<>();
-            for(int i=0; i<N; i++) dq.add( Integer.parseInt(arr[i]));
+            String[] strArr = str.substring(1, str.length()-1).split(",");
+            for(String s : strArr) dq.add(Integer.parseInt(s));
 
             /* 방법2 */
             st = new StringTokenizer(br.readLine(), "[],");
+            while(st.hasMoreTokens()) dq.add(Integer.parseInt(st.nextToken()));
 
-            LinkedList<Integer> dq = new LinkedList<>();
-            for(int i = 0; i < N; i++) dq.add(Integer.parseInt(st.nextToken()));
-        }
+            boolean isReverse = false;
+            boolean isError = false;
+            for(char op : p){
 
-
-        boolean isReverse = false;
-        boolean isError = false;
-        for(char op : p){
-
-            if(op == 'R'){  //R : 순서를 뒤집기
-                isReverse = !isReverse;
-            }
-            else{ //op == 'D, 첫 번째 수를 버리기, 단, 비어 있으면 error 출력
-
-                if( dq.isEmpty()){
-                    isError = true;
-                    break;
+                if(op == 'R'){  //R : 순서를 뒤집기
+                    isReverse = !isReverse;
                 }
-                else{
-                    if( isReverse) dq.removeLast();
-                    else dq.removeFirst();
+                else{ //op == 'D, 첫 번째 수를 버리기, 단, 비어 있으면 error 출력
+
+                    if( dq.isEmpty()){
+                        isError = true;
+                        break;
+                    }
+                    else{
+                        if( isReverse) dq.removeLast();
+                        else dq.removeFirst();
+                    }
+
                 }
-
             }
-        }
 
-        //출력
-        if(isError)sb.append("error\n");
-        else {
+            //출력
+            if(isError)sb.append("error\n");
+            else {
 
-            sb.append("[");
-            while(!dq.isEmpty()) {
+                sb.append("[");
+                while(!dq.isEmpty()) {
 
-                if (isReverse) sb.append(dq.removeLast());
-                else sb.append(dq.removeFirst());
+                    if (isReverse) sb.append(dq.removeLast());
+                    else sb.append(dq.removeFirst());
 
-                if(dq.size()!=0)
-                    sb.append(",");
+                    if(dq.size()!=0)
+                        sb.append(",");
+                }
+                //if( sb.charAt(sb.length()-1) == ',') sb.deleteCharAt( sb.length()-1);
+                sb.append("]\n");
             }
-            //if( sb.charAt(sb.length()-1) == ',') sb.deleteCharAt( sb.length()-1);
-            sb.append("]\n");
-        }
 
-    }// end testCase
+        }// end testCase
 
         System.out.print(sb.toString());
-}
+    }
 }
