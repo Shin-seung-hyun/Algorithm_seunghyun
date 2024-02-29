@@ -54,11 +54,13 @@ public class Main {
                 sb.append("[");
                 while(!dq.isEmpty()) {
 
-                    if (isReverse) sb.append(dq.removeLast() + "," );
-                    else sb.append(dq.removeFirst() + ",");
-
+                    if (isReverse) sb.append(dq.removeLast());
+                    else sb.append(dq.removeFirst());
+                    
+                    if(dq.size()!=0)
+                        sb.append(",");
                 }
-                if( sb.charAt(sb.length()-1) == ',') sb.deleteCharAt( sb.length()-1);
+                //if( sb.charAt(sb.length()-1) == ',') sb.deleteCharAt( sb.length()-1);
                 sb.append("]\n");
             }
 
