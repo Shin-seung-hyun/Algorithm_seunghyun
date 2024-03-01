@@ -1,63 +1,51 @@
-import java.util.Scanner;
-import java.util.Stack;
- 
-public class Main {
-	public static void main(String[] args) {
-		Scanner in = new Scanner(System.in);
- 
-		String s;
-		
-		while(true) {		
-			s = in.nextLine();
-			
-			if(s.equals(".")) {
-				break;
-			}		
-			System.out.println(solve(s));
-		}
-	
-	}
-	
-	public static String solve(String s) {
-		
-		Stack<Character> stack = new Stack<>();
-		
-		for(int i = 0; i < s.length(); i++) {
-			
-			char c = s.charAt(i);	 
-			
-			if(c == '(' || c == '[') {
-				stack.push(c);
-			}
-			
+import java.util.*;
+import java.io.*;
 
-			else if(c == ')') {
-				
-				if(stack.empty() || stack.peek() != '(') {
-					return "no";
-				}
-				else {
-					stack.pop();
-				}
-			}
-			
-			else if(c == ']') {
-				
-				if(stack.empty() || stack.peek() != '[') {
-					return "no";
-				}
-				else {
-					stack.pop();
-				}
-			}
-		}
-		
-		if(stack.empty()) {
-			return "yes";
-		}
-		else {
-			return "no";
-		}
-	}
- 
+//Deque
+public class Main {
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        StringBuilder sb = new StringBuilder();
+        
+        while(true){
+            
+            String str = br.readLine();
+            
+            //종료 조건
+            if( str.equals(".")) break;
+            
+            //시작
+            boolean isCorrect = true;
+
+            char[] charArr = str.toCharArray();
+
+            Stack<Character> stack = new Stack<>();
+
+            for(char c : charArr){
+
+                if (c == '(' || c == '[') stack.push(c);
+                else if ( c == ')' || c ==']' ){
+
+                    if(stack.isEmpty()) isCorrect = false;
+                    else if ( ( stack.peek() == '(' && c == ')' ) ||
+                              ( stack.peek() == '[' && c == ']' )  ){
+
+                        stack.pop();
+                    }
+                    else  isCorrect = false;
+
+                }
+            }
+
+            if(!stack.isEmpty()) isCorrect = false;
+
+            //출력
+            if(isCorrect) System.out.println("yes");
+            else System.out.println("no");
+
+        }// end while
+
+    }//end main
 }
