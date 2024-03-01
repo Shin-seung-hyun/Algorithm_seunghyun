@@ -23,14 +23,11 @@ public class Main {
                 if(c == '(') stack.push(c);
                 else{
                     if(!stack.isEmpty() && stack.peek() == '(') stack.pop();
-                    else isVPS = false;
+                    else stack.push(c);
                 }
             }
 
-            if(!stack.isEmpty()) isVPS = false;
-
-            //출력
-            if( isVPS) sb.append("YES\n");
+            if(stack.isEmpty())sb.append("YES\n");
             else sb.append("NO\n");
         }
 
