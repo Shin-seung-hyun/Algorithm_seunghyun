@@ -13,6 +13,8 @@ public class Main {
     static int dir[][] = { { 0,-1},{0,1},{1,0},{-1,0}};
     // 익은 토마토 위치
     static ArrayList<int[]> arrList = new ArrayList<>();
+    
+    static int day = 0;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -63,13 +65,13 @@ public class Main {
 
         //출력
         //며칠이 걸리는가? +  day일 후, 모든 토마토가 익었는가
-        int day = 0;
+        //int day = 0;
         int after_fill_tomato =0;
 
         for(int i =0; i<N; i++){
             for(int j=0; j<M; j++) {
 
-                day = Math.max(day, dist[i][j]);
+                //day = Math.max(day, dist[i][j]);
 
                 if( adj[i][j] == 1) after_fill_tomato++;
             }
@@ -81,7 +83,7 @@ public class Main {
 
     static void BFS(){
         Queue<Integer> queue = new LinkedList<>();
-
+        
         //익은 토마토의 위치 모두 넣기
         for( int[] arr : arrList) {
 
@@ -91,10 +93,14 @@ public class Main {
             dist[arr[0]][arr[1]] = 0;
         }
 
+        // 며칠이 걸리는가?
+            // 큐에 쌓이는 순서는 거리가 클수록 나중에 쌓임으로
         while(!queue.isEmpty()){
 
             int x = queue.poll();
             int y = queue.poll();
+            
+            day = Math.max(day, dist[x][y]);
 
             for(int i =0; i<4; i++){
                 int nx = x + dir[i][0];
@@ -113,5 +119,6 @@ public class Main {
                 dist[nx][ny] = dist[x][y] +1;
             }
         }
+        
     }
 }
