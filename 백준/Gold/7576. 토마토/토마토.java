@@ -1,69 +1,98 @@
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 //그래프와 DFS, BFS
     //BFS의 부가기능 - 토마토가 다 익는 최소 일수
-class Main{
-    static int N;   // 세로
-    static int M;   // 가로
-    static int[][] arr;     // 토마토 배열
-    static int [][]dist;    // 날짜 계산 배열
+public class Main {
+
+    static int N,M;
+    static int adj[][];     // 토마토 배열
+    static int dist[][];    // 날짜 계산 배열
 
     // 오른쪽 왼쪽 앞 뒤 이동을 의미하는 임의의 배열
-    static int [][]dir = { {0,-1},{0,1},{-1,0},{1,0} };
-    static int total_Tomato = 0;
-    static int fill_Tomato = 0;
+    static int dir[][] = { { 0,-1},{0,1},{1,0},{-1,0}};
+    // 익은 토마토 위치
+    static ArrayList<int[]> arrList = new ArrayList<>();
 
-    //1은 익은 토마토, 정수 0 은 익지 않은 토마토, 정수 -1은 토마토가 없는 칸
     public static void main(String[] args) throws IOException {
-        Scanner sc = new Scanner(System.in);
-        M = sc.nextInt();
-        N = sc.nextInt();
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        arr = new int [N+1][M+1];
+        M = Integer.parseInt(st.nextToken());   // 가로
+        N = Integer.parseInt(st.nextToken());   // 세로
 
-        for(int i =1; i<=N; i++){
-            for(int k =1; k<=M; k++){
+        //인접 행렬
+        adj = new int[N][M];
+        dist = new int[N][M];
 
-                arr[i][k] = sc.nextInt();
+        // 1은 익은 토마토,
+        // 0은 익지 않은 토마토,
+        // -1은 토마토 없음
 
-                if(arr[i][k] != -1 ) total_Tomato++;
-                if(arr[i][k] == 1) fill_Tomato++;
+        int fill_tomato = 0;    // 익은 토마토
+        int total_tomato = 0;   // 전체 토마토 수
+        for(int i=0; i<N; i++){
+            st = new StringTokenizer(br.readLine());
+
+            for(int j =0; j<M; j++){
+                int tomato = Integer.parseInt(st.nextToken());
+
+                adj[i][j] = tomato;
+
+                if(tomato != -1 ) total_tomato++;
+                if(tomato == 1){
+                    fill_tomato++;
+                    arrList.add( new int[]{i,j});
+                }
+
+                //dist 배열 초기화
+                dist[i][j] = -1;
             }
         }
+//        System.out.println(total_tomato);
+//        System.out.println(fill_tomato);
 
-        if(total_Tomato == fill_Tomato){
+        //종료 조건
+        if( total_tomato == fill_tomato){
             System.out.println(0);
             return;
         }
 
-        dist = new int[N+1][M+1];
-
         // 토마토 탐색
         BFS();
 
+        //출력
+        //며칠이 걸리는가? +  day일 후, 모든 토마토가 익었는가
+        int day = 0;
+        int after_fill_tomato =0;
+
+        for(int i =0; i<N; i++){
+            for(int j=0; j<M; j++) {
+
+                day = Math.max(day, dist[i][j]);
+
+                if( adj[i][j] == 1) after_fill_tomato++;
+            }
+        }
+
+        if( total_tomato != after_fill_tomato ) System.out.println(-1);
+        else System.out.println(day);
     }
 
     static void BFS(){
         Queue<Integer> queue = new LinkedList<>();
 
-        //dist 배열 초기화 + 익은 토마토의 위치 모두 넣기
-        for(int i =1; i<=N; i++){
-            for(int j =1; j<=M; j++){
-                dist[i][j] = -1;
+        //익은 토마토의 위치 모두 넣기
+        for( int[] arr : arrList) {
 
-                if(arr[i][j] == 1){
-                    queue.add(i);
-                    queue.add(j);
+            queue.add(arr[0]);
+            queue.add(arr[1]);
 
-                    dist[i][j] = 0;
-                }
-            }
+            dist[arr[0]][arr[1]] = 0;
         }
 
-
-        // queue 가 빌 때까지 탐색
         while(!queue.isEmpty()){
+
             int x = queue.poll();
             int y = queue.poll();
 
@@ -72,37 +101,17 @@ class Main{
                 int ny = y + dir[i][1];
 
                 // 범위에서 벗어나지 않고
-                if(nx <=0 || ny <=0 || nx >N || ny >M) continue;
+                if( nx >= N || nx < 0|| ny >= M || ny < 0) continue;
 
-                if(arr[nx][ny] == -1) continue;
-
-                // 방문하지 않았던 곳
-                if(dist[nx][ny] != -1) continue;
+                //토마토가 없거나, 토마토가 익은 곳 가지 X
+                if( adj[nx][ny] != 0) continue;
 
                 queue.add(nx);
                 queue.add(ny);
 
-                dist[nx][ny] = dist[x][y] + 1;
-            }
-
-        }
-
-        int answer =0;
-        for(int i =1; i<=N; i++){
-            for(int j =1; j<=M; j++){
-
-                // 토마토가 비어 있으면 패스
-                if(arr[i][j] == -1) continue;
-
-                if(dist[i][j] == -1){
-                    System.out.println(-1);
-                    return;
-                }
-                answer = Math.max(answer, dist[i][j]);
+                adj[nx][ny] = 1;
+                dist[nx][ny] = dist[x][y] +1;
             }
         }
-
-        System.out.println(answer);
     }
-
 }
