@@ -47,13 +47,16 @@ public class Main {
     static int BFS(int x, int y){
         Queue<Integer> queue = new LinkedList<>();
 
-        int area = 1;
-        
+        //int area = 1;
+        int area = 0;
+
         queue.add(x);
         queue.add(y);
         visit[x][y] = true;
 
         while(!queue.isEmpty()){
+
+            area++; // 큐에서 원소를 하나 뺄 때마다 넓이 1 증가시킴
 
             x = queue.poll();
             y = queue.poll();
@@ -69,7 +72,7 @@ public class Main {
                 queue.add(nx);
                 queue.add(ny);
                 visit[nx][ny] = true;
-                area++;
+                //area++;
             }
         }
 
