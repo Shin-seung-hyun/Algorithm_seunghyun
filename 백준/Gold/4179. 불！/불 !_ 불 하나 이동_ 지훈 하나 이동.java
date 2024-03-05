@@ -39,11 +39,15 @@ class Main{
                     Jvisit[i][j] = true;
 
                     adj[i][j] = '.';
-                } else if (c == 'F') {
+                }
+
+                else if (c == 'F') {
                     FQ.add(i);
                     FQ.add(j);
                     Fvisit[i][j] = true;
-                } else adj[i][j] = c;
+                }
+
+                else adj[i][j] = c;
             }
         }
 
@@ -61,10 +65,10 @@ class Main{
         // 지훈이가 더이상 갈 곳이 없을 때까지 반복
         while(!JQ.isEmpty()) {
 
-            // 지훈이와 불이 이동할 수 있는 모든 위치의 수
-            // 지훈과 불이 더이상 갈 곳이 없을 때까지 움직여야 한다면 while(!JQ FQ.isEmpty())를 써야하지만,
-            // 불 한 번, 지훈이 한 번 움직여아 함으로 while문을 쓸 수 없다.
-            // 따라서 for문을 통해, 불과 지훈이가 1초동안 움직일 수 있는 위치 경우의 수만큼 반복해야 한다.
+            // JLen, FLen : 지훈, 불이 1초에 이동할 수 있는 모든 위치의 수
+                // 지훈과 불이 더이상 갈 곳이 없을 때까지 움직여야 한다면 while(!JQ FQ.isEmpty())를 써야하지만,
+                // 불 한 번, 지훈이 한 번 움직여아 함으로 while문을 쓸 수 없다.
+                // 따라서 for문을 통해, 불과 지훈이가 1초동안 움직일 수 있는 위치 경우의 수만큼 반복해야 한다.
             int JLen = JQ.size()/2;
             int FLen = FQ.size()/2;
 
