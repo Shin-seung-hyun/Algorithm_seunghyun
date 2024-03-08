@@ -14,9 +14,11 @@ class Main{
         B = Long.parseLong(st.nextToken());
         C = Long.parseLong(st.nextToken());
 
+        // POW함수 내 2번 POW함수 불러서 시간 초과 발생 : O(B)
         //System.out.println(func(B));
 
         // func() 코드를 개선
+        // B가 절반씩 줄어들어서 시간복잡도 : O(logB)
         System.out.println(POW(A,B,C));
     }
 
