@@ -1,54 +1,49 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
-//N개 중에서 N개를 중복 o, 순서o 나열하기
-public class Main{
-    
-    public static int N;
-    public static int arr[]; //index 열, value 행
-    public static int cnt =0;
-    
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        
-        N = sc.nextInt();
-        arr = new int[N];
-        
-        N_Queen(0);
-        
-        System.out.print(cnt);
+public class Main {
+    static boolean[] bottom; // column을 차지하고 있는지
+    static boolean[] left; // 왼쪽 /방향 대각선을 차지하고 있는지
+    static boolean[] right; // 오른쪽 \방향 대각선을 차지하고 있는지
+    static int cnt = 0;
+    static int N;
+
+    public static void main(String[] args) throws IOException {
+
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+
+        N = Integer.parseInt(br.readLine());
+
+        bottom = new boolean[40];
+        left = new boolean[40];
+        right = new boolean[40];
+
+        DFS(0);
+
+        System.out.println(cnt);
     }
-    
-    //퀸을 놓아도 되는 자리인지 확인
-    public static boolean Possible(int col){
-        
-        for(int i = 0; i< col; i++){
-            
-            //depth 열의 행값과 i열의 행값이 같을 때 
-            if(arr[col] == arr[i]) return false;
-            
-            //이전의 퀸값과 대각선으로 만날 때
-            else if((arr[col] + col) == (arr[i] + i) || (arr[col] - col) == (arr[i] - i)) return false;
-        }
-        return true;
-    }
-    
-    public static void N_Queen(int depth){
-        
-        //재귀 종료 조건
-        if(depth == N){
+
+    static void DFS(int depth) { // cur번째 row에 말을 배치할 예정임
+
+        if (depth == N) { // N개를 놓는데 성공했다면
             cnt++;
             return;
         }
-        
-        //재귀 반복
-        for(int i =0; i< N ; i ++){
-           
-            arr[depth] = i;
-            
-            if(Possible(depth)){
-                N_Queen(depth+1);
-            }
+
+        for (int i = 0; i < N; i++) { // (depth, i)에 퀸을 놓을 예정
+
+            if (bottom[i] || left[i + depth] || right[depth - i + N - 1])
+                continue;
+
+            bottom[i] = true;
+            left[i + depth] = true;
+            right[depth - i + N - 1] = true;
+
+            DFS(depth + 1);
+
+            bottom[i] = false;
+            left[i + depth] = false;
+            right[depth - i + N - 1] = false;
         }
-        
     }
 }
