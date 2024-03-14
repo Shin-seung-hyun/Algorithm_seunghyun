@@ -32,18 +32,25 @@ public class Main {
 
         for (int i = 0; i < N; i++) { // (depth, i)에 퀸을 놓을 예정
 
-            if (bottom[i] || left[i + depth] || right[depth - i + N - 1])
+            /*
+            좌표를 (x,y)라고 표현할 때
+                왼쪽 대각선의 경우,  x + y 값이 모두 같다.
+                오른쪽 대각선의 경우, x - y 값이 모두 같다.
+                    단, 음수값을 피하기 위해  (x-y) + N을 해준다.
+             */
+
+            if (bottom[i] || left[i + depth] || right[depth - i + N] )
                 continue;
 
             bottom[i] = true;
             left[i + depth] = true;
-            right[depth - i + N - 1] = true;
+            right[depth - i + N] = true;
 
             DFS(depth + 1);
 
             bottom[i] = false;
             left[i + depth] = false;
-            right[depth - i + N - 1] = false;
+            right[depth - i + N]= false;
         }
     }
 }
