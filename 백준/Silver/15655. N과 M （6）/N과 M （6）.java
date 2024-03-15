@@ -1,56 +1,55 @@
 import java.io.*;
 import java.util.*;
 
+//완전탐색
+    // N개 중 M 개를, 중복 X, 순서 X 고르기 -> nCm
 public class Main {
-    static StringBuilder sb = new StringBuilder();
-    static int n, m;
+
+    static int[] arr, tmp;
     static boolean[] visit;
-    static int[] arr;
-    static int[] input;
+    static int N,M;
+    static StringBuilder sb = new StringBuilder();
 
     public static void main(String[] args) throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        
-        n = Integer.parseInt(st.nextToken());
-        m = Integer.parseInt(st.nextToken());
 
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
+
+        arr = new int [N+1];
         st = new StringTokenizer(br.readLine());
-        input = new int[n];
-        for(int i=0;i<n;i++){
-            input[i] = Integer.parseInt(st.nextToken());
-        }
-        Arrays.sort(input);
+        for(int i =1; i<=N; i++) arr[i] = Integer.parseInt(st.nextToken());
 
-        visit = new boolean[n];
-        arr = new int[m];
-        DFS(0,0);
-        System.out.println(sb);
+        Arrays.sort(arr, 1, N+1);
+
+        tmp = new int[M+1];
+        visit = new boolean[N+1];
+
+        DFS(1,1);
+
+        System.out.print(sb.toString());
     }
 
-    static void DFS(int depth, int start) {
-        
-        //조욜 조건
-        if (depth == m) {
-            
-            for (int val : arr) {
-                sb.append(val).append(" ");
-            }
-            
+    static void DFS(int depth ,int at ){
+
+        //종료 조건
+        if( depth == M+1){
+            for(int i=1; i<=M; i++)
+                sb.append(tmp[i] + " ");
             sb.append("\n");
+
             return;
         }
 
-        for (int i = start; i < n; i++) {
-            if (!visit[i]) {
-                visit[i] = true;
-                
-                arr[depth] = input[i];
-                DFS(depth + 1,i);
-                
-                visit[i] = false;
-            }
+        // 반복 조건
+        for(int i= at; i<=N; i++){
+
+            tmp[depth] = arr[i];
+            DFS(depth +1, i+1);
         }
-        
     }
+
+
 }
