@@ -1,66 +1,66 @@
-import java.util.Scanner;
-import java.util.Arrays;
+import java.io.*;
+import java.util.*;
 
-//중복 x, 순서 o 개 나열하기
-public class Main{
+//완전탐색
+    // N개 중 M 개를, 중복 X, 순서 O 나열하기 -> nPm
+public class Main {
 
-    public static int N,M;
-    public static int[] arr;
-    public static int[] nums;
-    public static boolean[] visit;
-    public static StringBuilder sb = new StringBuilder();
+    static int[] arr, tmp;
+    static boolean[] visit;
+    static int N,M;
+    static StringBuilder sb = new StringBuilder();
 
+    public static void main(String[] args) throws IOException {
 
-    public static void main(String[] args) {
-        Scanner sc =new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
 
-        N = sc.nextInt();
-        M = sc.nextInt();
+        N = Integer.parseInt(st.nextToken());
+        M = Integer.parseInt(st.nextToken());
 
-        arr = new int[M];
-        nums = new int[N];
-        visit = new boolean[N];
+        arr = new int [N+1];
+        st = new StringTokenizer(br.readLine());
+        for(int i =1; i<=N; i++) arr[i] = Integer.parseInt(st.nextToken());
 
-        for(int i =0; i<N; i++){
-            nums[i] = sc.nextInt();
-        }
+        Arrays.sort(arr, 1, N+1);
 
-        Arrays.sort(nums);
+        tmp = new int[M+1];
+        visit = new boolean[N+1];
 
-        dfs(0);
+        DFS(1);
 
-        System.out.print(sb);
+        System.out.print(sb.toString());
     }
 
-    public static void dfs(int depth){
+    static void DFS(int depth){
 
-        //재귀 종료조건
-        if(depth == M){
-            for(int val : arr){
-                sb.append(val).append(" ");
-            }
+        //종료 조건
+        if( depth == M+1){
+            for(int i=1; i<=M; i++)
+                sb.append(tmp[i] + " ");
             sb.append("\n");
+
             return;
         }
-        
-        //재귀 반복
-        else {
-            int before = 0;
 
-            for (int i = 0; i < N; i++) {
-                
-                if(visit[i]) continue;
-                
-                if (before != nums[i]) {
-                    visit[i] = true;
-                    arr[depth] = nums[i];
-                    before = nums[i];
-                    dfs(depth + 1);
-                    visit[i] = false;
-                }
+        // 반복 조건
+        int beforeNum = 0;  // 중복 수열인지 확인
+        for(int i= 1; i<=N; i++){
 
-            }
+
+            // 이전 수열의 마지막 항과 새로운 수열의 마지막이 같으면 중복된 것!
+            if( beforeNum == arr[i]) continue;
+            if( visit[i]) continue;
+
+            visit[i] = true;
+
+            tmp[depth] = arr[i];
+            beforeNum = tmp[depth];
+            DFS(depth +1);
+
+            visit[i] = false;
         }
     }
+
 
 }
