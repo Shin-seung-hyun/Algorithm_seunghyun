@@ -2,11 +2,11 @@ import java.util.*;
 import java.io.*;
 
 //구현
-    //Comparable
+    //Comparator
 class Main{
     static StringBuilder sb = new StringBuilder();
 
-    static class Stu implements Comparable<Stu> {
+    static class Stu{
         String name;
         int dd;
         int mm;
@@ -19,15 +19,6 @@ class Main{
             this.yyyy = yyyy;
         }
 
-        @Override
-        public int compareTo(Stu s){
-            if( this.yyyy == s.yyyy){
-                if(this.mm == s.mm)
-                    return this.dd - s.dd;
-                return this.mm - s.mm;
-            }
-            return this.yyyy - s.yyyy;
-        }
     }
 
     public static void main(String[] args)throws IOException {
@@ -49,7 +40,19 @@ class Main{
             student[i-1] = new Stu(nameStr, d, m ,y);
         }
 
-        Arrays.sort(student);
+        //Comparator 객체 사용
+        Arrays.sort(student, new Comparator<Stu>(){
+            @Override
+            public int compare(Stu s1, Stu s2) {
+                if( s1.yyyy == s2.yyyy){
+                    if(s1.mm == s2.mm)
+                        return s1.dd - s2.dd;
+                    return s1.mm - s2.mm;
+                }
+                return s1.yyyy - s2.yyyy;
+            }
+
+        });
 
         System.out.println(student[N-1].name);  // 나이가 어린 사람
         System.out.println(student[0].name);    // 나이가 많은
