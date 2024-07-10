@@ -33,7 +33,8 @@ class Main{
                 
              //방법2.
                 //방 배정 + 남은 학생 방 배정
-                //cnt += (room[i][j] /K) + (room[i][j] % K);
+                cnt += (room[i][j] /K);
+                if(room[i][j] % K > 0) cnt++;
             }
         }
 
