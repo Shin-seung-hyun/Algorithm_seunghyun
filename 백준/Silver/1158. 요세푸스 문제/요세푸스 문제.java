@@ -9,44 +9,35 @@ N명의 사람을 담을 배열에
 
     ArrayList, Array 사용 시,
         시간복잡도 : N * O(N) = O(N^2)
+
+단, 현재의 풀이는 iterator를 사용하지 않고 linkedList.remove를 사용해 O(N^2) 시간복잡도를 갖는다.
 */
 
 class Main{
     public static void main(String[] args) throws  IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-
-        int N = Integer.parseInt(st.nextToken());   // 사람수
-        int K = Integer.parseInt(st.nextToken());   // K번째 사람 제거
-
-        //N명의 사람을 담은 LinkedList O(N), ArrayList O(N^2)
-        LinkedList<Integer> list = new LinkedList<>();
-
-        for(int i=1; i<=N; i++) list.add(i);
-
-        //요세푸스 순열을 담을 arrList
-        ArrayList<Integer> arrList = new ArrayList<>();
-
-        int idx = 0;
-        while(list.size() >0) {
-
-            //매번 리스트의 처음부터 순회하지 않고, 이전에 제거된 요소의 위치(idx)부터 시작 -> O(1)
-            idx = (idx + K - 1) % list.size();
-            arrList.add(list.remove(idx));
-        }
-
-        //출력
         StringBuilder sb = new StringBuilder();
 
+        int n = Integer.parseInt(st.nextToken());
+        int k = Integer.parseInt(st.nextToken());
+
+        LinkedList<Integer> list = new LinkedList<>();
+        for(int i=1; i<=n; i++) list.add(i);
+
+        int idx = 0;
         sb.append("<");
-        for(int i=0; i< arrList.size(); i++) {
-            sb.append(arrList.get(i));
 
-            if( i < arrList.size()-1)
-                sb.append(", ");
+        while(list.size() >1){
+
+            // LinkedList의 특정 인덱스에서 요소를 제거하는 작업은 최악의 경우 O(n)
+                    idx = (idx + k -1) % list.size();
+            sb.append(list.remove(idx) + ", ");
         }
-        sb.append(">");
-        System.out.println(sb.toString());
 
-    }//end main
+        sb.append(list.remove());
+        sb.append(">");
+
+        System.out.println(sb.toString());
+    }
 }
