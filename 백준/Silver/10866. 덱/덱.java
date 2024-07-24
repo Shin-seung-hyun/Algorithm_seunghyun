@@ -6,7 +6,7 @@ public class Main {
 
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-		Deque<Integer> dq = new ArrayDeque<Integer>();
+		Deque<Integer> dq = new LinkedList<Integer>();
 		StringBuilder sb = new StringBuilder();
 
 		int N = Integer.parseInt(br.readLine());
