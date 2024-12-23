@@ -1,14 +1,13 @@
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
-public class Main {
-    public static void main(String[] args) {
+class Main{
+    public static void main(String[] args) throws IOException{
 
-        Scanner sc = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
-        char ASCII = sc.next().charAt(0);
-        int num = (int)ASCII;
-
-        System.out.println(num);
+        int result = br.readLine().charAt(0);
+        System.out.println(result);
 
     }
 }
