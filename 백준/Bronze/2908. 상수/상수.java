@@ -12,8 +12,6 @@ class Main{
         int A = Integer.parseInt(st.nextToken());
         int B = Integer.parseInt(st.nextToken());
 
-        if( A> B) System.out.println(A);
-        else System.out.println(B);
-
+        System.out.println(Math.max(A,B));
     }
 }
