@@ -5,30 +5,23 @@ class Main{
     public static void main(String[] args) throws IOException {
 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb = new StringBuilder();
-
-         char[] charArr = br.readLine().toUpperCase().toCharArray();
+        char[] charArr = br.readLine().toUpperCase().toCharArray();
 
          int alpha[] = new int[26];
-         boolean isMore = false;
          int maxCnt = 0;
-         char maxAlpha = ' ';
+         char answer = '?';
          for(char c : charArr){
              alpha[c -'A']++;
 
              if(maxCnt == alpha[c-'A']){
-                 isMore = true;
+                answer = '?';
              }
              else if( maxCnt < alpha[c-'A']){
                  maxCnt = alpha[c-'A'];
-                 isMore = false;
-                 maxAlpha = c;
+                 answer = c;
              }
          }
 
-         if(isMore) System.out.println("?");
-         else System.out.println(maxAlpha);
-
-
+         System.out.println(answer);
     }
 }
