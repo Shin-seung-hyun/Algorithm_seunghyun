@@ -1,27 +1,34 @@
-import java.util.Scanner;
+import java.util.*;
+import java.io.*;
 
-public class Main {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        String str = sc.next().toUpperCase();
+class Main{
+    public static void main(String[] args) throws IOException {
 
-        int[] count = new int[26];
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < str.length(); i++) {
-            int num = str.charAt(i) -'A' ;
-            count[num]++;
-        }
+         char[] charArr = br.readLine().toUpperCase().toCharArray();
 
-        int max = 0;
-        char answer = '?';
-        for (int i = 0; i < count.length; i++) {
-            if(max < count[i]){
-                max = count[i];
-                answer = (char)(i+'A');
-            } else if (max == count[i]){
-                answer = '?';
-            }
-        }
-        System.out.println(answer);
+         int alpha[] = new int[26];
+         boolean isMore = false;
+         int maxCnt = 0;
+         char maxAlpha = ' ';
+         for(char c : charArr){
+             alpha[c -'A']++;
+
+             if(maxCnt == alpha[c-'A']){
+                 isMore = true;
+             }
+             else if( maxCnt < alpha[c-'A']){
+                 maxCnt = alpha[c-'A'];
+                 isMore = false;
+                 maxAlpha = c;
+             }
+         }
+
+         if(isMore) System.out.println("?");
+         else System.out.println(maxAlpha);
+
+
     }
 }
