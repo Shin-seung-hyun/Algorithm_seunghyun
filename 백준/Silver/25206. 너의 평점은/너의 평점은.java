@@ -1,37 +1,55 @@
 import java.util.*;
 import java.io.*;
 
-//구현
 class Main{
-    public static void main(String[] args)throws IOException {
+    public static void main(String[] args) throws IOException {
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st;
 
-        String[] gradeList = { "A+","A0","B+","B0","C+","C0","D+","D0","F","P"}; // 0 ~ 9
-        double[] pointList = { 4.5, 4, 3.5, 3, 2.5, 2, 1.5, 1, 0};      // 0 ~8
+        double sum = 0; // 내 학점
+        double pointSum = 0; // 학점의 총합
+        for(int i=0; i<20; i++){
+            st = new StringTokenizer(br.readLine());
 
-        double sum = 0;
-        double pointSum= 0;
-        for(int i=1; i<=20; i++){
-            String str = br.readLine();
+            st.nextToken();  //과목명
+            double point = Double.parseDouble(st.nextToken()); // 학점
+            String grade = st.nextToken(); // 등급
 
-            double point = Double.parseDouble(str.split(" ")[1] );
-            String grade = str.split(" ")[2];
-
-            if( !grade.equals("P")) pointSum += point;
-
-            //P는 계산에서 제외
-            for(int j=0; j<=8; j++){
-
-                if(grade.equals(gradeList[j])){
-                    sum += (point * pointList[j]);
-                }
-
+            switch(grade){
+                case "A+" :
+                    sum += 4.5 * point;
+                    break;
+                case "A0" :
+                    sum += 4.0 * point;
+                    break;
+                case "B+" :
+                    sum += 3.5 * point;
+                    break;
+                case "B0" :
+                    sum += 3.0 * point;
+                    break;
+                case "C+" :
+                    sum += 2.5 * point;
+                    break;
+                case "C0" :
+                    sum += 2.0 * point;
+                    break;
+                case "D+" :
+                    sum += 1.5 * point;
+                    break;
+                case "D0" :
+                    sum += 1.0 * point;
+                    break;
+                case "F" :
+                    sum += 0.0 * point;
+                    break;
             }
+
+            if(!grade.equals("P"))pointSum += point;
 
         }
 
-        System.out.printf( "%.6f",sum/pointSum);
+        System.out.println(sum/pointSum);
     }
-
 }
