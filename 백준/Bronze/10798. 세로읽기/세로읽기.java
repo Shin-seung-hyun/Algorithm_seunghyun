@@ -1,37 +1,31 @@
 import java.util.*;
 import java.io.*;
 
-// 시뮬레이션
-public class Main{
-    static StringBuilder sb = new StringBuilder();
-
-    public static void main(String[] args) throws IOException{
+class Main{
+    public static void main(String[] args)throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        //StringTokenizer st = new StringTokenizer(br.readLine());
+        StringTokenizer st;
+        StringBuilder sb  = new StringBuilder();
 
-        String result = "";
-        String[] arrStr = new String[5];
+        String str ="";
 
-        int maxLen = 0;
         for(int i=0; i<5; i++){
+            String tmp = br.readLine();
 
-            String str = br.readLine();
-            arrStr[i] = str;
-            maxLen = Math.max(maxLen, str.length());
+            while(tmp.length() < 15)
+                tmp += "*";
+
+            str += tmp;
         }
 
-        for(int i=0; i< maxLen; i++){
-
-            for(int j = 0; j<5; j++){
-
-                if( arrStr[j].length()-1 < i) continue;
-
-                result += arrStr[j].charAt(i);
+        for(int i=0; i<15; i++) {
+            for (int j = 0; j < 5; j++) {
+                char c = str.charAt(15 * j + i);
+                if (c != '*')
+                    sb.append(str.charAt(15 * j + i));
             }
-            //result += " ";
         }
 
-        System.out.println(result);
+        System.out.println(sb.toString());
     }
-
 }
