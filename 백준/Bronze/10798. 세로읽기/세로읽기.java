@@ -1,23 +1,21 @@
-import java.util.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
-class Main{
-    public static void main(String[] args)throws IOException {
+public class Main{
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringBuilder sb  = new StringBuilder();
+        StringBuilder sb = new StringBuilder();
 
-        String[] arr = new String[5];
-        int maxLen = 0;
-        for(int i=0 ;i<arr.length; i++){
-            arr[i] = br.readLine();
-            maxLen = Math.max(maxLen, arr[i].length());
+        //2차원 배열
+        char s[][] = new char[5][];
+        for(int i = 0; i < 5; i++) {
+            s[i] = br.readLine().toCharArray();
         }
 
-        for(int i=0; i<maxLen; i++){
-            for(int j=0; j<5; j++){
-
-                if(arr[j].length()-1 < i) continue;
-                sb.append(arr[j].charAt(i));
+        for(int j = 0; j < 15; j++) {
+            for(int i = 0; i < 5; i++) {
+                if(j < s[i].length) sb.append(s[i][j]);
             }
         }
 
