@@ -4,25 +4,20 @@ import java.io.*;
 class Main{
     public static void main(String[] args)throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
         StringBuilder sb  = new StringBuilder();
 
-        String str ="";
-
-        for(int i=0; i<5; i++){
-            String tmp = br.readLine();
-
-            while(tmp.length() < 15)
-                tmp += "*";
-
-            str += tmp;
+        String[] arr = new String[5];
+        int maxLen = 0;
+        for(int i=0 ;i<arr.length; i++){
+            arr[i] = br.readLine();
+            maxLen = Math.max(maxLen, arr[i].length());
         }
 
-        for(int i=0; i<15; i++) {
-            for (int j = 0; j < 5; j++) {
-                char c = str.charAt(15 * j + i);
-                if (c != '*')
-                    sb.append(str.charAt(15 * j + i));
+        for(int i=0; i<maxLen; i++){
+            for(int j=0; j<5; j++){
+
+                if(arr[j].length()-1 < i) continue;
+                sb.append(arr[j].charAt(i));
             }
         }
 
