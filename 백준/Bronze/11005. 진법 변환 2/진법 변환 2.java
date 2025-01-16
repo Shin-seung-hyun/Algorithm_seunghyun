@@ -1,41 +1,28 @@
 import java.util.*;
 import java.io.*;
 
-// 시뮬레이션
-public class Main{
-    static StringBuilder sb = new StringBuilder();
-
-    public static void main(String[] args) throws IOException{
+class Main{
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine());
+        StringTokenizer st;
+        StringBuilder sb  = new StringBuilder();
 
-        int num = Integer.parseInt(st.nextToken());
+        st = new StringTokenizer(br.readLine());
+
+        int N = Integer.parseInt(st.nextToken());
         int B = Integer.parseInt(st.nextToken());
 
-        char[] arr = new char[B];
-        for(int i=0; i<B; i++){
-
-            if( i >=10) arr[i] = (char)( i -10 + 'A');
-            else arr[i] = (char)(i + '0');
-        }
-
-        // 1차원 배열 출력하기
-        //System.out.println(Arrays.toString(arr));
-
-        while(num >0){
-            sb.append( arr[num%B]);
-            num = num/B;
+        while(N > 0){
+            int tmp = N % B;
+            if(tmp >= 10){
+                char c = (char) ((tmp -10) + 'A');
+                sb.append(c);
+            }
+            else sb.append(tmp);
+            
+            N = N/B;
         }
 
         System.out.println(sb.reverse().toString());
     }
-
 }
-
-//1 10 ..1
-//   0
-
-//2 10 ..0
-//2  5 ..1
-//2  2 .. 0
-//   1
